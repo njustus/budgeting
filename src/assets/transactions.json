@@ -1,0 +1,5 @@
+[
+    {"title": "test 1", "amount": 50.59, "description": "a cool test"},
+    {"title": "test 2", "amount": 60.59, "description": "a cool test 2"},
+    {"title": "test 3", "amount": 100}
+]
