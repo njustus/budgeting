@@ -11,7 +11,7 @@ const txs = ref([])
 
 app.provide('transactions', txs)
 
-fetch('src/assets/transactions.json')
+fetch('/transactions.json')
     .then(res => res.json())
     .then(ts => txs.value = ts)
 

@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import { inject } from 'vue'
-import type {Transaction} from '../stores/app-state'
+import type {Transaction} from '../models/state'
 
-const transactions: Transaction[] = inject('transactions')
-
-defineProps<{    
-}>()
+const transactions: Transaction[] | undefined = inject<Transaction[]>('transactions')
 
 </script>
 
