@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 
 import './assets/main.css'
+import { useAppStore } from './stores/app-state'
 
 const app = createApp(App)
 const txs = ref([])
@@ -19,3 +20,9 @@ app.use(createPinia())
 app.use(router)
 
 app.mount('#app')
+
+const appStore = useAppStore();
+appStore.$subscribe((mut, state) => {
+    console.log("state changed", state)
+    localStorage.setItem('state', JSON.stringify(state))
+})
