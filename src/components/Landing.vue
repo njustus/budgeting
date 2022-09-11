@@ -2,6 +2,7 @@
 import { useAppStore } from '@/stores/app-state'
 import { inject } from 'vue'
 import type {Transaction} from '../models/state'
+import TransactionForm from './TransactionForm.vue'
 
 //const transactions: Transaction[] | undefined = inject<Transaction[]>('transactions')
 const transactionStore = useAppStore();
@@ -22,6 +23,7 @@ const add = () => transactionStore.addTransaction({title: "added", amount: 12.50
     </ul>
     <button type="button" @click="add()">add transaction</button>
 </div>
+<TransactionForm/>
 </template>
 
 <style scoped>
