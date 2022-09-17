@@ -21,7 +21,7 @@
         <input v-model="formValue.title" />
 
         <label>Amount</label>
-        <input type="number" v-model="formValue.amount" />
+        <input type="decimal" step="0.01" v-model="formValue.amount" />
         
         <button type="submit">Save</button>
     </form>
