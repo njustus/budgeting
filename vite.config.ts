@@ -17,6 +17,7 @@ export default defineConfig({
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
+        id: "/",
         name: 'Budgeting App',
         short_name: 'Budgeting',
         description: 'My Budgeting App',
