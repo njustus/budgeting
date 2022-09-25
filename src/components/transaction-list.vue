@@ -18,10 +18,11 @@ function amountClass(tx: Transaction) {
             <i class="fa fa-coins"></i>
         </span>
         <div class="w3-bar-item">
-            <span class="w3-large">{{tx.title}}</span>            
-            <small>{{tx.description}}</small>            
+            <span class="w3-large">{{tx.title}}</span><br/>
+            <small class="">{{tx.description}}</small>
         </div>
-        <strong class="w3-bar-item w3-right" v-bind:class="amountClass(tx)"> {{tx.amount}} € </strong>
+        
+        <strong class="w3-bar-item w3-right" v-bind:class="amountClass(tx)"> {{tx.amount.toLocaleString()}} € </strong>
     </li>
 </ul>
 </template>

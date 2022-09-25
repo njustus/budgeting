@@ -20,8 +20,11 @@
         <label>Title</label>
         <input class="w3-input" v-model="formValue.title" />
 
+        <label>Description</label>
+        <input class="w3-input" v-model="formValue.description" />
+
         <label>Amount</label>
-        <input class="w3-input" type="decimal" step="0.01" v-model="formValue.amount" />
+        <input class="w3-input" type="decimal" step="0.01" v-model.number="formValue.amount"/>
         
         <button class="w3-button w3-teal" type="submit">
             <i class="fa fa-check"></i>&nbsp;
