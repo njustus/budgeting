@@ -12,7 +12,7 @@ const transactions = transactionStore.transactions;
 <ul class="w3-ul w3-card-4">
     <li class="w3-bar" v-for="(tx, idx) of transactions" v-bind:key="idx">
         <span class="w3-bar-item w3-circle w3-left">
-            <i class="fa fa-home"></i>
+            <i class="fa fa-coins"></i>
         </span>
         <div class="w3-bar-item">
             <span class="w3-large">{{tx.title}} ({{tx.amount}} €)</span>            
