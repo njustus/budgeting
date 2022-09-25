@@ -23,7 +23,10 @@
         <label>Amount</label>
         <input class="w3-input" type="decimal" step="0.01" v-model="formValue.amount" />
         
-        <button class="w3-button w3-teal" type="submit">Save</button>
+        <button class="w3-button w3-teal" type="submit">
+            <i class="fa fa-check"></i>&nbsp;
+            Save
+        </button>
     </form>
 </template>
 

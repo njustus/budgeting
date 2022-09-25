@@ -6,6 +6,9 @@ import type {Transaction} from '../models/state'
 const transactionStore = useAppStore();
 const transactions = transactionStore.transactions;
 
+function amountClass(tx: Transaction) {
+    return tx.amount >= 0 ? 'w3-text-green' : 'w3-text-red';
+}
 </script>
 
 <template>
@@ -15,10 +18,10 @@ const transactions = transactionStore.transactions;
             <i class="fa fa-coins"></i>
         </span>
         <div class="w3-bar-item">
-            <span class="w3-large">{{tx.title}} ({{tx.amount}} €)</span>            
+            <span class="w3-large">{{tx.title}}</span>            
             <small>{{tx.description}}</small>            
         </div>
-        <strong class="w3-bar-item w3-right"> {{tx.amount}} € </strong>
+        <strong class="w3-bar-item w3-right" v-bind:class="amountClass(tx)"> {{tx.amount}} € </strong>
     </li>
 </ul>
 </template>
