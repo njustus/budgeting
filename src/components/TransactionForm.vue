@@ -6,12 +6,13 @@
     const appStore = useAppStore();
     const formValue = ref<Transaction>({
         title: '',
-        amount: 0
+        amount: 0,
+        date: new Date()
     })
 
     function save() {
         const t = formValue.value
-        appStore.addTransaction(t)
+        appStore.addTransaction({...t, date: new Date(t.date)})
     }
 </script>
 
@@ -20,12 +21,15 @@
         <label>Title</label>
         <input class="w3-input" v-model="formValue.title" />
 
-        <label>Description</label>
-        <input class="w3-input" v-model="formValue.description" />
+        <label>Date</label>
+        <input class="w3-input" type="date" v-model="formValue.date" />
 
         <label>Amount</label>
         <input class="w3-input" type="decimal" step="0.01" v-model.number="formValue.amount"/>
-        
+
+        <label>Description</label>
+        <input class="w3-input" v-model="formValue.description" />
+
         <button class="w3-button w3-teal" type="submit">
             <i class="fa fa-check"></i>&nbsp;
             Save
