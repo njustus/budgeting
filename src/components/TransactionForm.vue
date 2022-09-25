@@ -16,16 +16,15 @@
 </script>
 
 <template>
-    <form @submit.prevent="save()">
+    <form class="w3-container" @submit.prevent="save()">
         <label>Title</label>
-        <input v-model="formValue.title" />
+        <input class="w3-input" v-model="formValue.title" />
 
         <label>Amount</label>
-        <input type="decimal" step="0.01" v-model="formValue.amount" />
+        <input class="w3-input" type="decimal" step="0.01" v-model="formValue.amount" />
         
-        <button type="submit">Save</button>
+        <button class="w3-button w3-teal" type="submit">Save</button>
     </form>
-    <p>{{formValue}}</p>
 </template>
 
 <style scoped>
