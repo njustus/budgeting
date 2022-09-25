@@ -18,22 +18,29 @@
 
 <template>
     <form class="w3-container" @submit.prevent="save()">
-        <label>Title</label>
-        <input class="w3-input" v-model="formValue.title" />
+        <p>
+            <label>Title</label>
+            <input class="w3-input" v-model="formValue.title" />
+        </p>
+        <p>
+            <label>Date</label>
+            <input class="w3-input" type="date" v-model="formValue.date" />
+        </p>
 
-        <label>Date</label>
-        <input class="w3-input" type="date" v-model="formValue.date" />
-
-        <label>Amount</label>
-        <input class="w3-input" type="decimal" step="0.01" v-model.number="formValue.amount"/>
-
-        <label>Description</label>
-        <input class="w3-input" v-model="formValue.description" />
-
-        <button class="w3-button w3-teal" type="submit">
-            <i class="fa fa-check"></i>&nbsp;
-            Save
-        </button>
+        <p>
+            <label>Amount</label>
+            <input class="w3-input" type="decimal" step="0.01" v-model.number="formValue.amount"/>
+        </p>
+        <p>
+            <label>Description</label>
+            <input class="w3-input" v-model="formValue.description" />
+        </p>
+        <p>
+            <button class="w3-button w3-teal" type="submit">
+                <i class="fa fa-check"></i>&nbsp;
+                Save
+            </button>
+        </p>
     </form>
 </template>
 

@@ -19,7 +19,7 @@ function amountClass(tx: Transaction) {
         </span>
         <div class="w3-bar-item">
             <i class="fa fa-calendar"></i>&nbsp;
-            <span>{{tx.date.toLocaleDateString()}}</span>
+            <span>{{new Date(tx.date).toLocaleDateString()}}</span>
         </div>
         <div class="w3-bar-item">
             <span class="w3-large">{{tx.title}}</span><br/>
