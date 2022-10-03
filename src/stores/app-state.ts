@@ -18,7 +18,7 @@ export const useAppStore = defineStore('app-state', {
     getters: {
         sortedTransactions(state: AppState): Transaction[] {
             return state.transactions
-                .sort((x,y) => x.date.getTime - y.date)
+                .sort((x,y) => x.date - y.date)
                 .reverse()
         }
     }
