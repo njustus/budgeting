@@ -1,3 +1,5 @@
+import { createFakeTransactions } from "./fake-data"
+
 export interface AppState {
     transactions: Transaction[]
 }
@@ -10,10 +12,8 @@ export interface Transaction {
 }
 
 export function zero(): AppState {
+    const transactions = createFakeTransactions()
     return {
-        transactions: [
-            {title: 'test', amount: 50, date: new Date(2021,3,5)},
-            {title: 'test2', amount: 60.89, date: new Date(2021,2,1)}
-        ]
+        transactions
     }
 }

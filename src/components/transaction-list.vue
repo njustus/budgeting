@@ -4,7 +4,7 @@ import { inject } from 'vue'
 import type {Transaction} from '../models/state'
 
 const transactionStore = useAppStore();
-const transactions = transactionStore.transactions;
+const transactions = transactionStore.sortedTransactions;
 
 function amountClass(tx: Transaction) {
     return tx.amount >= 0 ? 'w3-text-green' : 'w3-text-red';
