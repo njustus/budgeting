@@ -20,6 +20,11 @@ export const useAppStore = defineStore('app-state', {
             return state.transactions
                 .sort((x,y) => x.date - y.date)
                 .reverse()
+        },
+        totalBalance(state: AppState): number {
+            return state.transactions
+                .map(x => x.amount)
+                .reduce((x,y) => x+y, 0)
         }
     }
 })
