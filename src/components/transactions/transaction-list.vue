@@ -3,13 +3,11 @@ import { useAppStore } from '@/stores/app-state'
 import { inject } from 'vue'
 
 const store = useAppStore();
-const transactions = store.sortedTransactions;
-
 </script>
 
 <template>
   <ul>
-    <li v-for="transaction of transactions">
+    <li v-for="transaction of store.sortedTransactions">
       {{JSON.stringify(transaction)}}
     </li>
   </ul>

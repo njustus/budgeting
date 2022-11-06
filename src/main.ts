@@ -1,5 +1,6 @@
 import { createApp, ref} from 'vue'
 import { createPinia } from 'pinia'
+import naive from 'naive-ui'
 
 import App from './App.vue'
 import router from './router'
@@ -16,6 +17,7 @@ fetch('/transactions.json')
     .then(res => res.json())
     .then(ts => txs.value = ts)
 
+app.use(naive)
 app.use(createPinia())
 app.use(router)
 
