@@ -8,7 +8,7 @@ import TransactionForm from '@/components/transactions/transaction-form.vue'
     <TransactionForm />
   </div>
     <div class="">
-        <h2>Transactions</h2>
+        <h2>Transactions <a href="/analysis">Analysis</a></h2>
         <TransactionList />
     </div>
 </template>

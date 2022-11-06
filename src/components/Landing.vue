@@ -11,6 +11,7 @@ import TransactionList from './transactions/transaction-list.vue'
 
     <div class="">
         <h2>Transactions</h2>
+
         <TransactionList />
     </div>
 </div>

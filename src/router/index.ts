@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import TransactionsListView from
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,6 +7,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('../views/TransactionsListView.vue')
+    },
+    {
+      path: '/analysis',
+      name: 'analysis',
+      component: () => import('../views/TransactionEvaluationView.vue')
     }
   ]
 })
