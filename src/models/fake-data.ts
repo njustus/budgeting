@@ -1,32 +1,64 @@
-import { faker } from '@faker-js/faker';
-import type { Transaction } from './state';
-
-function createTransaction(monthIdx: number): Transaction {
-    return {
-        date: faker.date.between(new Date(2021,monthIdx, 1), new Date(2021,monthIdx, 30)),
-        amount: parseFloat(faker.commerce.price())*(-1),
-        title: faker.company.name(),
-        description: faker.finance.transactionDescription()
-    }
-}
-
-function createIncome(monthIdx: number): Transaction {
-    return {
-        date: new Date(2021, monthIdx, 3),
-        amount: 2850.33,
-        title: "Lohn/Gehalt/Rente"        
-    }
-}
+import type {Transaction} from './state';
+import {TransactionRecurrence, TransactionType} from "./state";
 
 export function createFakeTransactions(): Transaction[] {
-    let transactions = []
+    const date = new Date(2021, 0, 1)
+    const type = TransactionType.Income
 
-    for(let month=0; month<12;month++) {
-        transactions.push(createIncome(month))
-        for(let idx=0; idx<50; idx++) {
-            transactions.push(createTransaction(month))
-        }
-    }
+    const gehalt = {name: 'Gehalt'}
+    const einkommen = {name: 'Einkommen'}
+    const bonus = {name: 'Bonus'}
+
+    let transactions = [
+        {
+            date,
+            amount: 2850.58,
+            title: "Gehalt monatl.",
+            tags: [gehalt, einkommen],
+            type,
+            recurrence: TransactionRecurrence.monthly
+        },
+        {
+            date,
+            amount: 450.45,
+            title: "Bonus monatl.",
+            tags: [gehalt, einkommen, bonus],
+            type,
+            recurrence: TransactionRecurrence.monthly
+        },
+        {
+            date: new Date(2021,11,30),
+            amount: 2500,
+            title: "Jahresbonus",
+            tags: [gehalt, einkommen, bonus],
+            type,
+            recurrence: TransactionRecurrence.yearly
+        },
+        {
+            date: new Date(2021,0,5),
+            amount: 900,
+            title: "Miete",
+            tags: [{name: 'Wohnen'}],
+            type: TransactionType.Expense,
+            recurrence: TransactionRecurrence.monthly
+        },
+        {
+            date: new Date(2021,0,5),
+            amount: 19.99,
+            title: "Vodafone Cable50",
+            tags: [{name: 'Kommunikation'}],
+            type: TransactionType.Expense,
+            recurrence: TransactionRecurrence.monthly
+        },
+        {
+            date: new Date(2021,0,5),
+            amount: 16.99,
+            title: "Congstar Mobil",
+            tags: [{name: 'Kommunikation'}],
+            type: TransactionType.Expense,
+            recurrence: TransactionRecurrence.monthly
+        },
+    ]
 
     return transactions
 }
