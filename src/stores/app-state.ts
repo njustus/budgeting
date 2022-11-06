@@ -55,8 +55,9 @@ export const useAppStore = defineStore('app-state', {
                 .reduce((x,y) => x+y, 0)
         },
 
-        availableTags(state: AppState): Set<Tag[]> {
-            return new Set(state.transactions.map(t => t.tags))
+        availableTags(state: AppState): Tag[] {
+            const uniques = new Set(state.transactions.flatMap(t => t.tags))
+            return [...uniques]
         }
     }
 })

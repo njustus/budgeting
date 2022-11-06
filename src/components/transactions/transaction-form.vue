@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import {useAppStore} from '@/stores/app-state'
 import {ref} from 'vue'
-import type {Transaction} from "@/models/state";
+import type {Tag, Transaction} from "@/models/state";
 import {TransactionRecurrence, TransactionType} from "@/models/state";
 
 const store = useAppStore();
 
 const transactionModel = ref({
   title: 'a placeholder',
-  recurrence: TransactionRecurrence.monthly,
+  recurrence: TransactionRecurrence.once,
   type: TransactionType.Expense,
   date: new Date(),
-  amount: 0
-} as Transaction)
+  amount: 0,
+  tags: []
+})
 
 const recurrencesOptions = [
   {label: 'einmalig', value: TransactionRecurrence.once},
@@ -26,9 +27,12 @@ const typeOptions = [
   {label: 'Einnahme', value: TransactionType.Income},
 ]
 
+const tagsOptions = store.availableTags.map(tag => ({label: tag.name, value: tag}))
+
 function saveTransaction() {
   const transaction = {
     ...transactionModel.value,
+    // tags: (transactionModel.value.tags as any).value,
     date: new Date(transactionModel.value.date)
   }
   console.log("saving: ", transaction)
@@ -41,8 +45,6 @@ function saveTransaction() {
  <n-space vertical>
    <n-form
       :model="transactionModel"
-
-      :onsubmit="saveTransaction"
    >
      <n-form-item label="Title" path="title">
        <n-input v-model:value="transactionModel.title"/>
@@ -63,7 +65,11 @@ function saveTransaction() {
        </n-form-item>
      </n-form-item-row>
 
-     <n-button type="success" attr-type="submit">Save</n-button>
+     <n-form-item label="Tags" path="tags">
+       <n-select v-model:value="transactionModel.tags" :options="tagsOptions" multiple />
+     </n-form-item>
+
+     <n-button type="success" attr-type="button" :onclick="saveTransaction">Save</n-button>
    </n-form>
  </n-space>
 </template>
