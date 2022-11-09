@@ -7,15 +7,17 @@ const store = useAppStore();
 //TODO intermediate sums per month
 
 function monthDescription(idx:number): string | null {
+    const t2 = store.sortedTransactions[idx]
+    const getDateString = () => new Date(t2.date.getFullYear(), t2.date.getMonth()+1, 1).toLocaleDateString()
+
     if(idx===0) {
-        return null
+        return getDateString()
     }
 
     const t1 = store.sortedTransactions[idx-1]
-    const t2 = store.sortedTransactions[idx]
 
     const isMonthDifferent = t1.date.getFullYear() != t2.date.getFullYear() || t1.date.getMonth() != t2.date.getMonth()
-    return isMonthDifferent ? new Date(t2.date.getFullYear(), t2.date.getMonth(), 1).toLocaleDateString() : null
+    return isMonthDifferent ? getDateString() : null
 }
 
 
