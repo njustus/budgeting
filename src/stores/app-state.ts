@@ -16,7 +16,7 @@ export const useAppStore = defineStore('app-state', {
             this.transactions.push(t);
         }
     },
-    getters: {
+    getters: { //TODO should all be memoized
         totalTransactions(state: AppState): Transaction[] {
             function expandTransaction(transaction: Transaction, today= new Date()) {
                 function repeatTransaction(timeframe: Date[]) {
@@ -58,6 +58,17 @@ export const useAppStore = defineStore('app-state', {
         availableTags(state: AppState): Tag[] {
             const uniques = new Set(state.transactions.flatMap(t => t.tags))
             return [...uniques]
+        },
+
+        runningSum(state: AppState): number[] {
+            const sums: number[] = []
+
+            state.totalTransactions.forEach(currentTx => {
+                const prevSum = sums.length<=0 ? 0 : sums[sums.length-1]
+                sums.push( prevSum + currentTx.amount )
+            })
+
+            return sums
         }
     }
 })
