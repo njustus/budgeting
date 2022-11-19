@@ -2,6 +2,7 @@
 import {useAppStore} from '@/stores/app-state'
 import type {Transaction} from "@/models/state";
 import {TransactionType} from "@/models/state";
+import {currency} from '@/utils/formats';
 
 const store = useAppStore();
 
@@ -19,8 +20,13 @@ function monthDescription(idx:number): string | null {
     return isMonthDifferent ? getDateString() : null
 }
 
+type AmountType = 'error' | 'success'
 
-function getType(transaction: Transaction): 'error' | 'success' {
+function getAmountType(amount: number): AmountType {
+  return amount > 0 ? 'success' : 'error'
+}
+
+function getType(transaction: Transaction): AmountType {
   switch(transaction.type) {
     case TransactionType.Expense:
       return 'error'
@@ -37,6 +43,9 @@ function getType(transaction: Transaction): 'error' | 'success' {
         <n-thing>
           <strong>{{ monthDescription(idx) }}</strong>
         </n-thing>
+        <template #suffix>
+          <strong><n-text :type="getAmountType(store.runningSum[idx])">{{currency.format(store.runningSum[idx])}}</n-text></strong>
+        </template>
       </n-list-item>
 
       <n-list-item>
@@ -49,9 +58,7 @@ function getType(transaction: Transaction): 'error' | 'success' {
 
         <template #prefix>{{transaction.date.toLocaleDateString()}}<small>&nbsp;({{transaction.recurrence}})</small></template>
         <template #suffix>
-          <strong>
-            <n-text :type="getType(transaction)">{{transaction.amount.toLocaleString()}} €</n-text>
-          </strong>
+            <n-text :type="getType(transaction)">{{currency.format(transaction.amount)}}</n-text>
         </template>
       </n-list-item>
       </template>

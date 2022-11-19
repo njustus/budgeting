@@ -64,13 +64,13 @@ export const useAppStore = defineStore('app-state', {
             const sums: number[] = []
 
             //TODO intermediate sums per month
-            this.sortedTransactions.forEach((currentTx: Transaction) => {
+            this.sortedTransactions.reverse().forEach((currentTx: Transaction) => {
                 const prevSum = sums.length<=0 ? 0 : sums[sums.length-1]
                 const currentAmount = currentTx.type===TransactionType.Expense ? -currentTx.amount : currentTx.amount
                 sums.push( prevSum + currentAmount )
             })
 
-            return sums
+            return sums.reverse()
         }
     }
 })
