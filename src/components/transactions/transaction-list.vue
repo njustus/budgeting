@@ -65,10 +65,4 @@ function getType(transaction: Transaction): AmountType {
       </n-list-item>
       </template>
   </n-list>
-
-  <ul>
-    <li v-for="transaction of store.sortedTransactions">
-      {{JSON.stringify(transaction)}}
-    </li>
-  </ul>
 </template>
