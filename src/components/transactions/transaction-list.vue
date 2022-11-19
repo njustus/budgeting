@@ -2,13 +2,13 @@
 import {useAppStore} from '@/stores/app-state'
 import type {Transaction} from "@/models/state";
 import {TransactionType} from "@/models/state";
-import {currency} from '@/utils/formats';
+import {currency, date} from '@/utils/formats';
 
 const store = useAppStore();
 
 function monthDescription(idx:number): string | null {
     const t2 = store.sortedTransactions[idx]
-    const getDateString = () => new Date(t2.date.getFullYear(), t2.date.getMonth()+1, 1).toLocaleDateString()
+    const getDateString = () => date.format(new Date(t2.date.getFullYear(), t2.date.getMonth()+1, 1))
 
     if(idx===0) {
         return getDateString()
@@ -56,7 +56,7 @@ function getType(transaction: Transaction): AmountType {
           {{transaction.title}}
         </n-thing>
 
-        <template #prefix>{{transaction.date.toLocaleDateString()}}<small>&nbsp;({{transaction.recurrence}})</small></template>
+        <template #prefix>{{date.format(transaction.date)}}<small>&nbsp;({{transaction.recurrence}})</small></template>
         <template #suffix>
             <n-text :type="getType(transaction)">{{currency.format(transaction.amount)}}</n-text>
         </template>

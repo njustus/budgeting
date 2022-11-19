@@ -1,6 +1,6 @@
 export const currency = {
     format: (num: number): string => {
-        const options = {
+        const options: Intl.NumberFormatOptions = {
             style: 'currency',
             currency: 'EUR',
             minimumFractionDigits: 2,
