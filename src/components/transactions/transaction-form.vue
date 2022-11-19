@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup="setup" lang="ts">
 import {useAppStore} from '@/stores/app-state'
 import {ref} from 'vue'
 import type {Tag, Transaction} from "@/models/state";

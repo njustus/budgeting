@@ -1,10 +1,9 @@
-<script setup lang="ts">
+<script setup="setup" lang="ts">
 import {useAppStore} from '@/stores/app-state'
 import type {Transaction} from "@/models/state";
 import {TransactionType} from "@/models/state";
 
 const store = useAppStore();
-//TODO intermediate sums per month
 
 function monthDescription(idx:number): string | null {
     const t2 = store.sortedTransactions[idx]
@@ -37,7 +36,6 @@ function getType(transaction: Transaction): 'error' | 'success' {
       <n-list-item v-if="monthDescription(idx)">
         <n-thing>
           <strong>{{ monthDescription(idx) }}</strong>
-          TODO display running sum
         </n-thing>
       </n-list-item>
 

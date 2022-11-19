@@ -1,4 +1,4 @@
-import type {AppState, Tag, Transaction} from '@/models/state'
+import { TransactionType, type AppState, type Tag, type Transaction} from '@/models/state'
 import {TransactionRecurrence, zero} from '@/models/state'
 import {defineStore} from 'pinia'
 import {eachMonthOfInterval, eachQuarterOfInterval, eachYearOfInterval} from 'date-fns'
@@ -63,9 +63,11 @@ export const useAppStore = defineStore('app-state', {
         runningSum(state: AppState): number[] {
             const sums: number[] = []
 
-            state.totalTransactions.forEach(currentTx => {
+            //TODO intermediate sums per month
+            this.sortedTransactions.forEach((currentTx: Transaction) => {
                 const prevSum = sums.length<=0 ? 0 : sums[sums.length-1]
-                sums.push( prevSum + currentTx.amount )
+                const currentAmount = currentTx.type===TransactionType.Expense ? -currentTx.amount : currentTx.amount
+                sums.push( prevSum + currentAmount )
             })
 
             return sums

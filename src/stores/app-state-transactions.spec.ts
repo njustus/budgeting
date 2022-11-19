@@ -76,7 +76,7 @@ describe('The TransactionStore should', function() {
         ];
 
         txs.forEach(tx => store.addTransaction(tx))
-        expect(store.runningSum).toEqual([1, 3])
+        expect(store.runningSum).toEqual([-1, -3])
     })
 
     it('calculate running sum', function() {
@@ -91,9 +91,9 @@ describe('The TransactionStore should', function() {
             },
             {
                 title: 'test2',
-                amount: 2,
+                amount: 6,
                 date: new Date(2021,1,1),
-                type: TransactionType.Expense,
+                type: TransactionType.Income,
                 recurrence: TransactionRecurrence.once,
                 tags: []
             },
@@ -108,6 +108,6 @@ describe('The TransactionStore should', function() {
         ]
 
         txs.forEach(tx => store.addTransaction(tx))
-        expect(store.runningSum).toEqual([1, 3, 6])
+        expect(store.runningSum).toEqual([-1, -4, 2])
     })
 })
