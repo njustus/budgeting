@@ -1,0 +1,12 @@
+@import "../../node_modules/fontawesome-free/css/all.css";
+
+#app {
+  max-width: 100%;
+  padding: 1em 2.5em;
+  margin: auto;
+}
+
+.default-grid {
+  grid-row-gap: 2rem !important;
+  grid-column-gap: 4rem !important;
+}

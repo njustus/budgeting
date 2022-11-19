@@ -5,7 +5,7 @@ import naive from 'naive-ui'
 import App from './App.vue'
 import router from './router'
 
-import './assets/main.css'
+import './assets/main.scss'
 import { useAppStore } from './stores/app-state'
 
 const app = createApp(App)
