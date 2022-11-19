@@ -5,7 +5,11 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      redirect: '/transactions'
+    },
+    {
+      path: '/transactions',
+      name: 'transactions',
       component: () => import('../views/TransactionsListView.vue')
     },
     {
