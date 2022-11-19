@@ -14,6 +14,10 @@ export const useAppStore = defineStore('app-state', {
     actions: {
         addTransaction(t:Transaction) {
             this.transactions.push(t);
+        },
+
+        deleteTransaction(t: Transaction) {
+            this.transactions = this.transactions.filter(tx => tx.id !== t.id);
         }
     },
     getters: { //TODO should all be memoized

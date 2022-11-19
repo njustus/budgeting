@@ -34,6 +34,7 @@ function getType(transaction: Transaction): AmountType {
       return 'success'
   }
 }
+
 </script>
 
 <template>
@@ -59,6 +60,7 @@ function getType(transaction: Transaction): AmountType {
         <template #prefix>{{date.format(transaction.date)}}<small>&nbsp;({{transaction.recurrence}})</small></template>
         <template #suffix>
             <n-text :type="getType(transaction)">{{currency.format(transaction.amount)}}</n-text>
+            <n-button type="error" @click="store.deleteTransaction(transaction)">Delete</n-button>
         </template>
       </n-list-item>
       </template>

@@ -3,6 +3,7 @@ import {useAppStore} from '@/stores/app-state'
 import {ref} from 'vue'
 import type {Tag, Transaction} from "@/models/state";
 import {TransactionRecurrence, TransactionType} from "@/models/state";
+import { v4 as uuidv4 } from 'uuid';
 
 const store = useAppStore();
 
@@ -32,6 +33,7 @@ const tagsOptions = store.availableTags.map(tag => ({label: tag.name, value: tag
 function saveTransaction() {
   const transaction = {
     ...transactionModel.value,
+    id: uuidv4(),
     // tags: (transactionModel.value.tags as any).value,
     date: new Date(transactionModel.value.date)
   }

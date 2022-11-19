@@ -1,5 +1,6 @@
 import type {Transaction} from './state';
 import {TransactionRecurrence, TransactionType} from "./state";
+import { v4 as uuidv4 } from 'uuid';
 
 export function createFakeTransactions(): Transaction[] {
     const date = new Date(2021, 0, 1)
@@ -11,6 +12,7 @@ export function createFakeTransactions(): Transaction[] {
 
     let transactions = [
         {
+            id: uuidv4(),
             date,
             amount: 2850.58,
             title: "Gehalt monatl.",
@@ -19,6 +21,7 @@ export function createFakeTransactions(): Transaction[] {
             recurrence: TransactionRecurrence.monthly
         },
         {
+            id: uuidv4(),
             date,
             amount: 450.45,
             title: "Bonus monatl.",
@@ -27,6 +30,7 @@ export function createFakeTransactions(): Transaction[] {
             recurrence: TransactionRecurrence.monthly
         },
         {
+            id: uuidv4(),
             date: new Date(2021,11,30),
             amount: 2500,
             title: "Jahresbonus",
@@ -35,6 +39,7 @@ export function createFakeTransactions(): Transaction[] {
             recurrence: TransactionRecurrence.yearly
         },
         {
+            id: uuidv4(),
             date: new Date(2021,0,5),
             amount: 900,
             title: "Miete",
@@ -43,6 +48,7 @@ export function createFakeTransactions(): Transaction[] {
             recurrence: TransactionRecurrence.monthly
         },
         {
+            id: uuidv4(),
             date: new Date(2021,0,5),
             amount: 19.99,
             title: "Vodafone Cable50",
@@ -51,6 +57,7 @@ export function createFakeTransactions(): Transaction[] {
             recurrence: TransactionRecurrence.monthly
         },
         {
+            id: uuidv4(),
             date: new Date(2021,0,5),
             amount: 16.99,
             title: "Congstar Mobil",
