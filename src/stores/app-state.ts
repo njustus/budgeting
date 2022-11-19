@@ -5,8 +5,8 @@ import {eachMonthOfInterval, eachQuarterOfInterval, eachYearOfInterval} from 'da
 
 export const useAppStore = defineStore('app-state', {
     state: (): AppState => {
-        // const item = localStorage.getItem('state')
-        const appState = zero()
+        const item = localStorage.getItem('state')
+        const appState = item ? JSON.parse(item) : zero()
         appState.transactions = appState.transactions.map(x => ({...x, date: new Date(x.date)}))
 
         return appState
