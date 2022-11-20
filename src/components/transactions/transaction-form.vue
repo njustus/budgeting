@@ -59,6 +59,9 @@ function saveTransaction() {
        <n-form-item label="Date" path="date">
          <n-date-picker v-model:value="transactionModel.date" type="date"/>
        </n-form-item>
+     </n-form-item-row>
+
+     <n-form-item-row>
        <n-form-item label="Typ" path="type">
          <n-select v-model:value="transactionModel.type" :options="typeOptions"/>
        </n-form-item>

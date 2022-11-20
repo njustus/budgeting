@@ -1,8 +1,8 @@
 <template>
 <div>
   <income-expense></income-expense>
-  <expense-categories></expense-categories>
   <expense-per-month></expense-per-month>
+  <expense-categories></expense-categories>
 </div>
 </template>
 

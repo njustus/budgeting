@@ -5,11 +5,11 @@ import ExpensePerMonth from "@/components/evaluations/expense-per-month.vue";
 </script>
 
 <template>
-  <n-grid :cols="3" class="default-grid">
-    <n-gi>
+  <n-grid :cols="3" item-responsive class="default-grid">
+    <n-gi span="3 m:1">
       <TransactionForm />
     </n-gi>
-    <n-gi :span="2">
+    <n-gi span="0 m:2">
       <h2>Expenses Per Month</h2>
       <expense-per-month></expense-per-month>
     </n-gi>
