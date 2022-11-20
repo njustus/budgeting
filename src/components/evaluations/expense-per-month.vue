@@ -17,6 +17,7 @@ import * as R from 'ramda'
 import type {Transaction} from "@/models/state";
 import {TransactionType} from "@/models/state";
 import {date} from "@/utils/formats";
+import {computed} from "vue";
 
 ChartJS.register(
   Title,
@@ -77,7 +78,7 @@ function expensesPerMonth() {
   }
 }
 
-const data = expensesPerMonth()
+const data = computed(expensesPerMonth)
 
 </script>
 
