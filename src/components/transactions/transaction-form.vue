@@ -74,7 +74,7 @@ function saveTransaction() {
        <n-select v-model:value="transactionModel.tags" :options="tagsOptions" multiple />
      </n-form-item>
 
-     <n-button type="success" attr-type="button" :onclick="saveTransaction">Save</n-button>
+     <n-button type="success" attr-type="button" @click="saveTransaction">Save</n-button>
    </n-form>
  </n-space>
 </template>

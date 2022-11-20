@@ -12,8 +12,14 @@ export enum TransactionRecurrence {
     monthly, quaterly, yearly, once
 }
 
+export interface TransactionRange {
+    start: Date | null,
+    end: Date
+}
+
 export interface AppState {
     transactions: Transaction[]
+    transactionRange: TransactionRange
 }
 
 export interface Transaction {
@@ -26,9 +32,17 @@ export interface Transaction {
     recurrence: TransactionRecurrence
 }
 
+export function zeroTransactionRange(): TransactionRange {
+    return {
+        start: null,
+        end: new Date()
+    }
+}
+
 export function zero(): AppState {
     const transactions = createFakeTransactions()
     return {
+        transactionRange: zeroTransactionRange(),
         transactions
     }
 }

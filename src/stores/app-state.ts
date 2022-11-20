@@ -1,12 +1,15 @@
-import { TransactionType, type AppState, type Tag, type Transaction} from '@/models/state'
+import {TransactionType, type AppState, type Tag, type Transaction, zeroTransactionRange} from '@/models/state'
 import {TransactionRecurrence, zero} from '@/models/state'
 import {defineStore} from 'pinia'
-import {eachMonthOfInterval, eachQuarterOfInterval, eachYearOfInterval} from 'date-fns'
-
+import {eachMonthOfInterval, eachQuarterOfInterval, eachYearOfInterval, isWithinInterval} from 'date-fns'
 export const useAppStore = defineStore('app-state', {
     state: (): AppState => {
         const item = localStorage.getItem('state')
         const appState = item ? JSON.parse(item) : zero()
+        appState.transactionRange = {
+            start: appState.transactionRange.start ? new Date(appState.transactionRange.start) : null,
+            end: new Date(appState.transactionRange.end),
+        }
         appState.transactions = appState.transactions.map(x => ({...x, date: new Date(x.date)}))
 
         return appState
@@ -48,8 +51,14 @@ export const useAppStore = defineStore('app-state', {
         },
 
         sortedTransactions(state: AppState): Transaction[] {
+            const rangeFilter = (t:Transaction) => isWithinInterval(t.date, {
+                start: state.transactionRange.start ? state.transactionRange.start : 0,
+                end: state.transactionRange.end
+            })
+
             return this.totalTransactions
                 .sort((x,y) => x.date.getTime() - y.date.getTime())
+                .filter(rangeFilter)
                 .reverse()
         },
 
