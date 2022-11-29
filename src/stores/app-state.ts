@@ -2,6 +2,7 @@ import {TransactionType, type AppState, type Tag, type Transaction, zeroTransact
 import {TransactionRecurrence, zero} from '@/models/state'
 import {defineStore} from 'pinia'
 import {eachMonthOfInterval, eachQuarterOfInterval, eachYearOfInterval, isWithinInterval} from 'date-fns'
+
 export const useAppStore = defineStore('app-state', {
     state: (): AppState => {
         const item = localStorage.getItem('state')
@@ -69,8 +70,8 @@ export const useAppStore = defineStore('app-state', {
         },
 
         availableTags(state: AppState): Tag[] {
-            const uniques = new Set(state.transactions.flatMap(t => t.tags))
-            return [...uniques]
+            const uniques = new Set(state.transactions.flatMap(t => t.tags).map(t => t.name))
+            return [...uniques].map(name => ({name}))
         },
 
         runningSum(state: AppState): number[] {
