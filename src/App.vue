@@ -5,10 +5,10 @@ import type {MenuOption} from "naive-ui";
 
 const menuOptions: MenuOption[] = [
   {
-    label: () => h(RouterLink, {to: '/transactions', activeClass: 'success'}, "Home"),
+    label: () => h(RouterLink, {to: '/transactions', activeClass: 'success'}, () => "Home"),
     key: 'transactions'
   }, {
-    label: () => h(RouterLink, {to: '/analysis', activeClass: 'success'}, "Analysis"),
+    label: () => h(RouterLink, {to: '/analysis', activeClass: 'success'}, () => "Analysis"),
     key: 'analysis'
   }
 ]
