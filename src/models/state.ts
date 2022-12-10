@@ -42,7 +42,7 @@ export function zeroTransactionRange(): TransactionRange {
 }
 
 const tags:Tag[] = [
-    {name: 'Versicherungen', color: 'dodgerblue'},
+    {name: 'Versicherung', color: 'dodgerblue'},
     {name: 'Abonnement', color: 'teal'},
     {name: 'Miete', color: 'orangered'},
     {name: 'Nebenkosten', color: 'darkorange'},

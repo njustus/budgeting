@@ -1,6 +1,6 @@
 <script setup="setup" lang="ts">
 import {useAppStore} from '@/stores/app-state'
-import {ref} from 'vue'
+import {ref, h} from 'vue'
 import type {Tag, Transaction} from "@/models/state";
 import {TransactionRecurrence, TransactionType} from "@/models/state";
 import { v4 as uuidv4 } from 'uuid';
@@ -71,7 +71,7 @@ function saveTransaction() {
      </n-form-item-row>
 
      <n-form-item label="Tags" path="tags">
-       <n-select v-model:value="transactionModel.tags" :options="tagsOptions" multiple />
+       <n-select v-model:value="transactionModel.tags" :options="tagsOptions" filterable multiple />
      </n-form-item>
 
      <n-button type="success" attr-type="button" @click="saveTransaction">Save</n-button>

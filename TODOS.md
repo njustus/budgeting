@@ -4,11 +4,11 @@ Offene todos
 ## Ein-/Ausgaben
 - [ ] laufende Summe passt nicht zum Monat
 - [ ] Monatsangabe passt nicht/läuft über
-- [ ] Tag defaults / Tags erweitern
-- [ ] dedizierte Farben für Tags vergeben
-- [ ] Farben der Tags in Analyse verwenden
+- [x] Tag defaults / Tags erweitern
+- [x] dedizierte Farben für Tags vergeben
+- [x] Farben der Tags in Analyse verwenden
 - [ ] Graphiken berichtigen
-  - Ausgaben pro Kategorie zeigt nur 1 an
+  - [x] Ausgaben pro Kategorie zeigt nur 1 an
   - Ein-/Ausgaben sollte für aktuellen Monat angezeigt werden
 - [ ] wöchentliche Ausgaben
 - [ ] halbjährliche Ausgaben
