@@ -11,7 +11,7 @@ const transactionModel = ref({
   title: 'a placeholder',
   recurrence: TransactionRecurrence.once,
   type: TransactionType.Expense,
-  date: new Date(),
+  date: new Date().getTime(),
   amount: 0,
   tags: []
 })
