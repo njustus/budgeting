@@ -1,7 +1,8 @@
 import { createFakeTransactions } from "./fake-data"
 
 export interface Tag {
-    name: string
+    name: string,
+    color: string
 }
 
 export enum TransactionType {
@@ -20,6 +21,7 @@ export interface TransactionRange {
 export interface AppState {
     transactions: Transaction[]
     transactionRange: TransactionRange
+    tags: Tag[]
 }
 
 export interface Transaction {
@@ -39,10 +41,23 @@ export function zeroTransactionRange(): TransactionRange {
     }
 }
 
+const tags:Tag[] = [
+    {name: 'Versicherungen', color: 'dodgerblue'},
+    {name: 'Abonnement', color: 'teal'},
+    {name: 'Miete', color: 'orangered'},
+    {name: 'Nebenkosten', color: 'darkorange'},
+    {name: 'Kommunikation', color: 'red'},
+    {name: 'Hobby', color: 'limegreen'},
+    {name: 'Investment', color: 'yellow'},
+    {name: 'Gehalt', color: 'forestgreen'},
+    {name: 'Bonus', color: 'lightgreen'},
+]
+
 export function zero(): AppState {
-    const transactions = createFakeTransactions()
+    const transactions:Transaction[] = []//createFakeTransactions()
     return {
         transactionRange: zeroTransactionRange(),
-        transactions
+        transactions,
+        tags
     }
 }

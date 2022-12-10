@@ -13,6 +13,7 @@ Offene todos
 - [ ] wöchentliche Ausgaben
 - [ ] halbjährliche Ausgaben
 - [ ] monatliches offenes Budget / frei zur Verfügung ausrechnen
+- [ ] computed properties in singleton services auslagern
 
 ## Aktien/Finances
 - [ ] Dashboard für Aktiendepot mit aktuellem Kurs

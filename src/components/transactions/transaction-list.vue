@@ -1,10 +1,11 @@
 <script setup="setup" lang="ts">
 import {useAppStore} from '@/stores/app-state'
-import type {Transaction} from "@/models/state";
+import type {Transaction, Tag} from "@/models/state";
 import {TransactionType} from "@/models/state";
 import {currency, date} from '@/utils/formats';
 
 const store = useAppStore();
+const tagNameToColor = new Map<string, string>(store.availableTags.map(t => [t.name, t.color]))
 
 function monthDescription(idx:number): string | null {
     const t2 = store.sortedTransactions[idx]
@@ -35,6 +36,13 @@ function getType(transaction: Transaction): AmountType {
   }
 }
 
+function getTagColor(tag: Tag) {
+  const textColor = tagNameToColor.get(tag.name);
+  return {
+    textColor
+  }
+}
+
 </script>
 
 <template>
@@ -52,7 +60,7 @@ function getType(transaction: Transaction): AmountType {
       <n-list-item>
         <n-thing>
           <template #description>
-            <n-tag type="info" size="small" :bordered="false" v-for="tag of transaction.tags">{{tag.name}}</n-tag>
+            <n-tag type="info" :color="getTagColor(tag)" size="small" :bordered="false" v-for="tag of transaction.tags">{{tag.name}}</n-tag>
           </template>
           {{transaction.title}}
         </n-thing>

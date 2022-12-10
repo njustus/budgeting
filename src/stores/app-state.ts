@@ -70,8 +70,7 @@ export const useAppStore = defineStore('app-state', {
         },
 
         availableTags(state: AppState): Tag[] {
-            const uniques = new Set(state.transactions.flatMap(t => t.tags).map(t => t.name))
-            return [...uniques].map(name => ({name}))
+            return state.tags
         },
 
         runningSum(state: AppState): number[] {
