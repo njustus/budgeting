@@ -5,10 +5,11 @@ import {TransactionType} from "@/models/state";
 import {currency, date} from '@/utils/formats';
 import * as R from 'ramda';
 import {endOfMonth} from "date-fns";
+import {computed} from "vue";
 
 const store = useAppStore();
 const tagNameToColor = new Map<string, string>(store.availableTags.map(t => [t.name, t.color]))
-const transactions = R.reverse(store.sortedTransactions)
+const transactions = computed(() => R.reverse(store.sortedTransactions))
 
 function getSumForMonth(month: Date): number {
   month = endOfMonth(month)
@@ -19,14 +20,14 @@ function getSumForMonth(month: Date): number {
 }
 
 function monthDescription(idx:number): string | null {
-    const t2 = transactions[idx]
+    const t2 = transactions.value[idx]
     const getDateString = () => date.format(new Date(t2.date.getFullYear(), t2.date.getMonth()+1, 1))
 
     if(idx===0) {
         return getDateString()
     }
 
-    const t1 = transactions[idx-1]
+    const t1 = transactions.value[idx-1]
 
     const isMonthDifferent = t1.date.getFullYear() != t2.date.getFullYear() || t1.date.getMonth() != t2.date.getMonth()
     return isMonthDifferent ? getDateString() : null

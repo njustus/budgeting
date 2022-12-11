@@ -1,5 +1,4 @@
-import {TransactionType, type AppState, type Tag, type Transaction} from '@/models/state'
-import {TransactionRecurrence, zero} from '@/models/state'
+import {type AppState, type Tag, type Transaction, TransactionRecurrence, TransactionType, zero} from '@/models/state'
 import {defineStore} from 'pinia'
 import {eachMonthOfInterval, eachQuarterOfInterval, eachYearOfInterval, isWithinInterval} from 'date-fns'
 
@@ -26,7 +25,7 @@ export const useAppStore = defineStore('app-state', {
     },
     getters: { //TODO should all be memoized
         totalTransactions(state: AppState): Transaction[] {
-            function expandTransaction(transaction: Transaction, today = new Date()) {
+            function expandTransaction(transaction: Transaction, today: Date) {
                 function repeatTransaction(timeframe: Date[]) {
                     return timeframe.map(month => ({
                         ...transaction,
@@ -48,7 +47,7 @@ export const useAppStore = defineStore('app-state', {
                 }
             }
 
-            return state.transactions.flatMap(t => expandTransaction(t))
+            return state.transactions.flatMap(t => expandTransaction(t, state.transactionRange.end))
         },
 
         sortedTransactions(state: AppState): Transaction[] {
