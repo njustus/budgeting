@@ -1,4 +1,4 @@
-import {TransactionType, type AppState, type Tag, type Transaction, zeroTransactionRange} from '@/models/state'
+import {TransactionType, type AppState, type Tag, type Transaction} from '@/models/state'
 import {TransactionRecurrence, zero} from '@/models/state'
 import {defineStore} from 'pinia'
 import {eachMonthOfInterval, eachQuarterOfInterval, eachYearOfInterval, isWithinInterval} from 'date-fns'
@@ -16,7 +16,7 @@ export const useAppStore = defineStore('app-state', {
         return appState
     },
     actions: {
-        addTransaction(t:Transaction) {
+        addTransaction(t: Transaction) {
             this.transactions.push(t);
         },
 
@@ -26,7 +26,7 @@ export const useAppStore = defineStore('app-state', {
     },
     getters: { //TODO should all be memoized
         totalTransactions(state: AppState): Transaction[] {
-            function expandTransaction(transaction: Transaction, today= new Date()) {
+            function expandTransaction(transaction: Transaction, today = new Date()) {
                 function repeatTransaction(timeframe: Date[]) {
                     return timeframe.map(month => ({
                         ...transaction,
@@ -36,7 +36,7 @@ export const useAppStore = defineStore('app-state', {
 
                 const interval = {start: transaction.date, end: today}
 
-                switch(transaction.recurrence) {
+                switch (transaction.recurrence) {
                     case TransactionRecurrence.yearly:
                         return repeatTransaction(eachYearOfInterval(interval))
                     case TransactionRecurrence.monthly:
@@ -52,21 +52,20 @@ export const useAppStore = defineStore('app-state', {
         },
 
         sortedTransactions(state: AppState): Transaction[] {
-            const rangeFilter = (t:Transaction) => isWithinInterval(t.date, {
+            const rangeFilter = (t: Transaction) => isWithinInterval(t.date, {
                 start: state.transactionRange.start ? state.transactionRange.start : 0,
                 end: state.transactionRange.end
             })
 
             return this.totalTransactions
-                .sort((x,y) => x.date.getTime() - y.date.getTime())
+                .sort((x, y) => x.date.getTime() - y.date.getTime())
                 .filter(rangeFilter)
-                .reverse()
         },
 
         totalBalance(state: AppState): number {
             return state.transactions
                 .map(x => x.amount)
-                .reduce((x,y) => x+y, 0)
+                .reduce((x, y) => x + y, 0)
         },
 
         availableTags(state: AppState): Tag[] {
@@ -77,13 +76,13 @@ export const useAppStore = defineStore('app-state', {
             const sums: number[] = []
 
             //TODO intermediate sums per month
-            this.sortedTransactions.reverse().forEach((currentTx: Transaction) => {
-                const prevSum = sums.length<=0 ? 0 : sums[sums.length-1]
-                const currentAmount = currentTx.type===TransactionType.Expense ? -currentTx.amount : currentTx.amount
-                sums.push( prevSum + currentAmount )
+            this.sortedTransactions.forEach((currentTx: Transaction) => {
+                const prevSum = sums.length <= 0 ? 0 : sums[sums.length - 1]
+                const currentAmount = currentTx.type === TransactionType.Expense ? -currentTx.amount : currentTx.amount
+                sums.push(prevSum + currentAmount)
             })
 
-            return sums.reverse()
+            return sums
         }
     }
 })
