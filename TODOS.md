@@ -2,8 +2,8 @@
 Offene todos
 
 ## Ein-/Ausgaben
-- [ ] laufende Summe passt nicht zum Monat
-- [ ] Monatsangabe passt nicht/läuft über
+- [x] laufende Summe passt nicht zum Monat
+- [x] Monatsangabe passt nicht/läuft über
 - [x] Tag defaults / Tags erweitern
 - [x] dedizierte Farben für Tags vergeben
 - [x] Farben der Tags in Analyse verwenden

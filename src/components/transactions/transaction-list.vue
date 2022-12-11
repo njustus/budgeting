@@ -1,21 +1,32 @@
 <script setup="setup" lang="ts">
 import {useAppStore} from '@/stores/app-state'
-import type {Transaction, Tag} from "@/models/state";
+import type {Tag, Transaction} from "@/models/state";
 import {TransactionType} from "@/models/state";
 import {currency, date} from '@/utils/formats';
+import * as R from 'ramda';
+import {endOfMonth} from "date-fns";
 
 const store = useAppStore();
 const tagNameToColor = new Map<string, string>(store.availableTags.map(t => [t.name, t.color]))
+const transactions = R.reverse(store.sortedTransactions)
+
+function getSumForMonth(month: Date): number {
+  month = endOfMonth(month)
+
+  return R.sum(
+    R.map((tx: Transaction) => tx.type === TransactionType.Expense ? tx.amount*(-1) : tx.amount,
+      R.takeWhile((tx: Transaction) => tx.date <= month, store.sortedTransactions)))
+}
 
 function monthDescription(idx:number): string | null {
-    const t2 = store.sortedTransactions[idx]
+    const t2 = transactions[idx]
     const getDateString = () => date.format(new Date(t2.date.getFullYear(), t2.date.getMonth()+1, 1))
 
     if(idx===0) {
         return getDateString()
     }
 
-    const t1 = store.sortedTransactions[idx-1]
+    const t1 = transactions[idx-1]
 
     const isMonthDifferent = t1.date.getFullYear() != t2.date.getFullYear() || t1.date.getMonth() != t2.date.getMonth()
     return isMonthDifferent ? getDateString() : null
@@ -47,13 +58,13 @@ function getTagColor(tag: Tag) {
 
 <template>
   <n-list>
-    <template v-for="(transaction, idx) of store.sortedTransactions" v-bind:key="idx">
+    <template v-for="(transaction, idx) of transactions" v-bind:key="idx">
       <n-list-item v-if="monthDescription(idx)">
         <n-thing>
           <strong>{{ monthDescription(idx) }}</strong>
         </n-thing>
         <template #suffix>
-          <strong><n-text :type="getAmountType(store.runningSum[idx])">{{currency.format(store.runningSum[idx])}}</n-text></strong>
+          <strong><n-text :type="getAmountType(getSumForMonth(transaction.date))">{{currency.format(getSumForMonth(transaction.date))}}</n-text></strong>
         </template>
       </n-list-item>
 
