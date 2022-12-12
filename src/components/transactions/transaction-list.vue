@@ -2,7 +2,7 @@
 import {useAppStore} from '@/stores/app-state'
 import type {Tag, Transaction} from "@/models/state";
 import {TransactionType} from "@/models/state";
-import {currency, date} from '@/utils/formats';
+import {currency, date, recurrence} from '@/utils/formats';
 import * as R from 'ramda';
 import {endOfMonth} from "date-fns";
 import {computed} from "vue";
@@ -77,7 +77,12 @@ function getTagColor(tag: Tag) {
           {{transaction.title}}
         </n-thing>
 
-        <template #prefix>{{date.format(transaction.date)}}<small>&nbsp;({{transaction.recurrence}})</small></template>
+        <template #prefix>{{date.format(transaction.date)}}
+          <n-tooltip trigger="hover">
+            <template #trigger><small>&nbsp;({{recurrence.format(transaction.recurrence).abbrev}})</small></template>
+            {{recurrence.format(transaction.recurrence).fullName}}
+          </n-tooltip>
+        </template>
         <template #suffix>
             <n-text :type="getType(transaction)">{{currency.format(transaction.amount)}}</n-text>
             <n-button type="error" @click="store.deleteTransaction(transaction)">Delete</n-button>
