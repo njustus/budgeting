@@ -21,7 +21,7 @@ function getSumForMonth(month: Date): number {
 
 function monthDescription(idx:number): string | null {
     const t2 = transactions.value[idx]
-    const getDateString = () => date.format(new Date(t2.date.getFullYear(), t2.date.getMonth()+1, 1))
+    const getDateString = () => date.formatMonth(new Date(t2.date.getFullYear(), t2.date.getMonth()+1, 1))
 
     if(idx===0) {
         return getDateString()
