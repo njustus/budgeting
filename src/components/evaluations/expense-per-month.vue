@@ -1,23 +1,24 @@
 <script setup lang="ts">
 import {useAppStore} from '@/stores/app-state'
 import {startOfMonth} from "date-fns";
-import {Line} from 'vue-chartjs';
+import {Bar} from 'vue-chartjs';
 import {
-  LineElement,
+  BarElement,
   CategoryScale,
   Chart as ChartJS,
   Legend,
   LinearScale,
+  LineElement,
+  PointElement,
   Title,
-  Tooltip,
-  BarElement,
-  PointElement
+  Tooltip
 } from 'chart.js'
 import * as R from 'ramda'
 import type {Transaction} from "@/models/state";
 import {TransactionType} from "@/models/state";
 import {date} from "@/utils/formats";
 import {computed} from "vue";
+
 
 ChartJS.register(
   Title,
@@ -67,12 +68,14 @@ function expensesPerMonth() {
       {
         label: 'Expenses',
         data: expenseMonthGroups.map(d => d.amount),
-        borderColor: 'red'
+        backgroundColor: 'rgba(255, 99, 110, 0.8)',
+        borderColor: 'rgba(255, 99, 132)'
       },
       {
         label: 'Income',
         data: incomeGroups.map(d => d.amount),
-        borderColor: 'green'
+        backgroundColor: 'rgba(75, 220, 192, 0.8)',
+        borderColor: 'rgba(75, 192, 192)'
       }
     ]
   }
@@ -84,9 +87,9 @@ const data = computed(expensesPerMonth)
 
 <template>
   <p>expense per month</p>
-  <Line
+  <Bar
     :chart-data="data"
-  ></Line>
+  ></Bar>
 </template>
 
 
