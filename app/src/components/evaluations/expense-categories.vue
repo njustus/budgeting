@@ -29,8 +29,6 @@ function dataset(timeframe: Date) {
     return acc;
   }, {} as {[k:string]: number})
 
-  console.log("per tag: ", perTag);
-
   const result = {
     labels: [] as string[],
     datasets: [

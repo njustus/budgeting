@@ -3,7 +3,7 @@ import {useAppStore} from '@/stores/app-state'
 import {isSameYear} from "date-fns";
 import {TransactionType} from "@/models/state";
 import {Bar} from 'vue-chartjs';
-import {Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ArcElement} from 'chart.js'
+import {ArcElement, BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip} from 'chart.js'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ArcElement)
 

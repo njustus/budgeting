@@ -59,8 +59,6 @@ function expensesPerMonth() {
   const expenseMonthGroups = MonthData.fromGroup(buildGroups(expenses))
   const incomeGroups = MonthData.fromGroup(buildGroups(incomes))
   const amounts = expenseMonthGroups.map(x => x.amount)
-  console.log("amounts: ", amounts)
-  console.log("expense groups: ", expenseMonthGroups, "income groups: ", incomeGroups)
 
   return {
     labels: expenseMonthGroups.map(d => date.format(d.label)),
