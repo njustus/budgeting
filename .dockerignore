@@ -9,3 +9,10 @@ coverage
 private
 .vscode
 .idea
+
+backend/dist
+backend/node_modules
+backend/private
+
+app/dev-dist
+app/node_modules

@@ -22,7 +22,6 @@ app.use(express.static(__dirname+'/public'));
 //TODO config aus ENV/yaml lesen
 //TODO dedicated logging lib
 //TODO proxy frontend/backend
-//TODO include static files from frontend
 app.post(path('state/:stateId'), (req: express.Request, res: express.Response) => {
   stateRepository.save(req.params.stateId, req.body);
   res.sendStatus(200)
