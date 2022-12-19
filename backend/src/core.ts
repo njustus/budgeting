@@ -18,6 +18,9 @@ app.use(express.json())
 
 //TODO state ctrl auslagern
 //TODO config aus ENV/yaml lesen
+//TODO dedicated logging lib
+//TODO proxy frontend/backend
+//TODO include static files from frontend
 app.post(path('state/:stateId'), (req: express.Request, res: express.Response) => {
   stateRepository.save(req.params.stateId, req.body);
   res.sendStatus(200)
