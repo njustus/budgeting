@@ -1,9 +1,33 @@
-const express = require('express')
+import express = require("express");
+import {stateRepository} from "./state-repository";
+
+stateRepository.initDirectory()
+
+const appConfig = {
+  port: 3000,
+  address: 'localhost'
+}
+
 const app = express()
 
-app.get('/', function (req: any, res: { send: (arg0: string) => void }) {
-  console.log("received request")
-  res.send('Hello World')
+function path(p:string) {
+  return '/api/'+p;
+}
+
+app.use(express.json())
+
+//TODO state ctrl auslagern
+//TODO config aus ENV/yaml lesen
+app.post(path('state/:stateId'), (req: express.Request, res: express.Response) => {
+  stateRepository.save(req.params.stateId, req.body);
+  res.sendStatus(200)
+});
+
+app.get(path('state/:stateId'), (req: express.Request, res: express.Response) => {
+  const data = stateRepository.get(req.params.stateId)
+  res.status(200).json(data)
 })
 
-app.listen(3000)
+app.listen(appConfig.port, appConfig.address, () => {
+  console.log(`Backend running at ${appConfig.address}:${appConfig.port}`)
+})
