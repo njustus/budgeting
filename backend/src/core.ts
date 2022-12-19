@@ -16,6 +16,8 @@ function path(p:string) {
 
 app.use(express.json())
 
+app.use(express.static(__dirname+'/public'));
+
 //TODO state ctrl auslagern
 //TODO config aus ENV/yaml lesen
 //TODO dedicated logging lib
