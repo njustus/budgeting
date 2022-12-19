@@ -5,7 +5,7 @@ stateRepository.initDirectory()
 
 const appConfig = {
   port: 3000,
-  address: 'localhost'
+  address: '0.0.0.0'
 }
 
 const app = express()
