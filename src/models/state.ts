@@ -1,5 +1,3 @@
-import { createFakeTransactions } from "./fake-data"
-
 export interface Tag {
     name: string,
     color: string
