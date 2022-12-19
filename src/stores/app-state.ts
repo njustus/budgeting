@@ -10,7 +10,7 @@ export const useAppStore = defineStore('app-state', {
       start: appState.transactionRange.start ? new Date(appState.transactionRange.start) : null,
       end: new Date(appState.transactionRange.end),
     }
-    appState.transactions = appState.transactions.map(x => ({...x, date: new Date(x.date)}))
+    appState.transactions = appState.transactions.map((x: Transaction) => ({...x, date: new Date(x.date)}))
 
     return appState
   },
