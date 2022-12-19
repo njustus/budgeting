@@ -1,0 +1,13 @@
+{
+  "include": ["env.d.ts", "src/**/*"],
+  "compilerOptions": {
+    "outDir": "dist",
+    "baseUrl": ".",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "types": [
+      "node"
+    ]
+  }
+}
