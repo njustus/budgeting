@@ -1,8 +1,10 @@
 import * as fs from "fs";
+import { CONFIG } from "./configuration";
 
 export const stateRepository = {
-  BASE_PATH: __dirname+'/../private/',
-  ENCODING: 'UTF-8',
+  BASE_PATH: CONFIG.repositoryPath,
+  ENCODING: CONFIG.defaultEncoding,
+
   initDirectory() {
     if(!fs.existsSync(this.BASE_PATH)) {
       console.log(`creating base directory: ${this.BASE_PATH}`)

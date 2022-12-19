@@ -1,12 +1,8 @@
 import express = require("express");
+import { CONFIG } from "./configuration";
 import {stateRepository} from "./state-repository";
 
 stateRepository.initDirectory()
-
-const appConfig = {
-  port: 3000,
-  address: '0.0.0.0'
-}
 
 const app = express()
 
@@ -19,7 +15,6 @@ app.use(express.json())
 app.use(express.static(__dirname+'/public'));
 
 //TODO state ctrl auslagern
-//TODO config aus ENV/yaml lesen
 //TODO dedicated logging lib
 //TODO proxy frontend/backend
 app.post(path('state/:stateId'), (req: express.Request, res: express.Response) => {
@@ -32,6 +27,7 @@ app.get(path('state/:stateId'), (req: express.Request, res: express.Response) =>
   res.status(200).json(data)
 })
 
-app.listen(appConfig.port, appConfig.address, () => {
-  console.log(`Backend running at ${appConfig.address}:${appConfig.port}`)
+app.listen(CONFIG.getPort(), CONFIG.host, () => {
+  console.log(`config loaded:`, CONFIG)
+  console.log(`Backend running at ${CONFIG.host}:${CONFIG.getPort()}`)
 })
