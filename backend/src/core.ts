@@ -1,5 +1,5 @@
 import express = require("express");
-import { CONFIG } from "./configuration";
+import {CONFIG} from "./configuration";
 import {stateRepository} from "./state-repository";
 
 stateRepository.initDirectory()
@@ -16,6 +16,7 @@ app.use(express.static(__dirname+'/public'));
 
 //TODO state ctrl auslagern
 //TODO dedicated logging lib
+//TODO handle missing keys
 app.post(path('state/:stateId'), (req: express.Request, res: express.Response) => {
   stateRepository.save(req.params.stateId, req.body);
   res.sendStatus(200)

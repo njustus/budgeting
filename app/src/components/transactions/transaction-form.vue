@@ -1,9 +1,8 @@
 <script setup="setup" lang="ts">
 import {useAppStore} from '@/stores/app-state'
-import {ref, h} from 'vue'
-import type {Tag, Transaction} from "@/models/state";
+import {ref} from 'vue'
 import {TransactionRecurrence, TransactionType} from "@/models/state";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 const store = useAppStore();
 
@@ -35,7 +34,8 @@ function saveTransaction() {
     ...transactionModel.value,
     id: uuidv4(),
     // tags: (transactionModel.value.tags as any).value,
-    date: new Date(transactionModel.value.date)
+    date: new Date(transactionModel.value.date),
+    lastUpdate: new Date()
   }
   console.log("saving: ", transaction)
   store.addTransaction(transaction)

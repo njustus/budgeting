@@ -27,7 +27,8 @@ describe('The TransactionStore should', function () {
                 date: new Date(2021, 4, 1),
                 type: TransactionType.Expense,
                 recurrence: TransactionRecurrence.once,
-                tags: []
+                tags: [],
+              lastUpdate: new Date()
             },
             {
                 id: '1',
@@ -36,7 +37,8 @@ describe('The TransactionStore should', function () {
                 date: new Date(2021, 1, 1),
                 type: TransactionType.Expense,
                 recurrence: TransactionRecurrence.once,
-                tags: []
+                tags: [],
+              lastUpdate: new Date()
             },
             {
                 id: '2',
@@ -45,7 +47,8 @@ describe('The TransactionStore should', function () {
                 date: new Date(2021, 3, 1),
                 type: TransactionType.Expense,
                 recurrence: TransactionRecurrence.once,
-                tags: []
+                tags: [],
+              lastUpdate: new Date()
             }
         ]
 
@@ -67,7 +70,8 @@ describe('The TransactionStore should', function () {
                     date: new Date(2021, 1, 1),
                     type: TransactionType.Expense,
                     recurrence: TransactionRecurrence.once,
-                    tags: []
+                    tags: [],
+                  lastUpdate: new Date()
                 },
                 {
                     id: '0',
@@ -76,7 +80,8 @@ describe('The TransactionStore should', function () {
                     date: new Date(2021, 4, 1),
                     type: TransactionType.Expense,
                     recurrence: TransactionRecurrence.once,
-                    tags: []
+                    tags: [],
+                  lastUpdate: new Date()
                 },
             ];
 
@@ -93,7 +98,8 @@ describe('The TransactionStore should', function () {
                     date: new Date(2021, 1, 1),
                     type: TransactionType.Income,
                     recurrence: TransactionRecurrence.once,
-                    tags: []
+                    tags: [],
+                  lastUpdate: new Date()
                 },
                 {
                     id: '2',
@@ -102,7 +108,8 @@ describe('The TransactionStore should', function () {
                     date: new Date(2021, 3, 1),
                     type: TransactionType.Expense,
                     recurrence: TransactionRecurrence.once,
-                    tags: []
+                    tags: [],
+                  lastUpdate: new Date()
                 },
                 {
                     id: '0',
@@ -111,7 +118,8 @@ describe('The TransactionStore should', function () {
                     date: new Date(2021, 4, 1),
                     type: TransactionType.Expense,
                     recurrence: TransactionRecurrence.once,
-                    tags: []
+                    tags: [],
+                  lastUpdate: new Date()
                 },
             ]
 
