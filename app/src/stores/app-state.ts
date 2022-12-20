@@ -1,4 +1,12 @@
-import {type AppState, type Tag, type Transaction, TransactionRecurrence, TransactionType, zero} from '@/models/state'
+import {
+  type AppState,
+  generateStateKey,
+  type Tag,
+  type Transaction,
+  TransactionRecurrence,
+  TransactionType,
+  zero
+} from '@/models/state'
 import {defineStore} from 'pinia'
 import {eachMonthOfInterval, eachQuarterOfInterval, eachYearOfInterval, isWithinInterval} from 'date-fns'
 
@@ -11,6 +19,7 @@ export const useAppStore = defineStore('app-state', {
       end: new Date(appState.transactionRange.end),
     }
     appState.transactions = appState.transactions.map((x: Transaction) => ({...x, date: new Date(x.date)}))
+    appState.stateKey =  appState.stateKey || generateStateKey()
 
     return appState
   },

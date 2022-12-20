@@ -1,61 +1,72 @@
+import * as R from 'ramda'
+
 export interface Tag {
-    name: string,
-    color: string
+  name: string,
+  color: string
 }
 
 export enum TransactionType {
-    Expense, Income
+  Expense, Income
 }
 
 export enum TransactionRecurrence {
-    monthly, quaterly, yearly, once
+  monthly, quaterly, yearly, once
 }
 
 export interface TransactionRange {
-    start: Date | null,
-    end: Date
+  start: Date | null,
+  end: Date
 }
 
 export interface AppState {
-    transactions: Transaction[]
-    transactionRange: TransactionRange
-    tags: Tag[]
+  transactions: Transaction[]
+  transactionRange: TransactionRange
+  tags: Tag[]
+  stateKey: string
 }
 
 export interface Transaction {
-    id: string
-    title: string
-    amount: number
-    date: Date
-    tags: Tag[]
-    type: TransactionType
-    recurrence: TransactionRecurrence
+  id: string
+  title: string
+  amount: number
+  date: Date
+  tags: Tag[]
+  type: TransactionType
+  recurrence: TransactionRecurrence
 }
 
 export function zeroTransactionRange(): TransactionRange {
-    return {
-        start: null,
-        end: new Date()
-    }
+  return {
+    start: null,
+    end: new Date()
+  }
 }
 
-const tags:Tag[] = [
-    {name: 'Versicherung', color: 'dodgerblue'},
-    {name: 'Abonnement', color: 'teal'},
-    {name: 'Miete', color: 'orangered'},
-    {name: 'Nebenkosten', color: 'darkorange'},
-    {name: 'Kommunikation', color: 'red'},
-    {name: 'Hobby', color: 'limegreen'},
-    {name: 'Investment', color: 'yellow'},
-    {name: 'Gehalt', color: 'forestgreen'},
-    {name: 'Bonus', color: 'lightgreen'},
+const tags: Tag[] = [
+  {name: 'Versicherung', color: 'dodgerblue'},
+  {name: 'Abonnement', color: 'teal'},
+  {name: 'Miete', color: 'orangered'},
+  {name: 'Nebenkosten', color: 'darkorange'},
+  {name: 'Kommunikation', color: 'red'},
+  {name: 'Hobby', color: 'limegreen'},
+  {name: 'Investment', color: 'yellow'},
+  {name: 'Gehalt', color: 'forestgreen'},
+  {name: 'Bonus', color: 'lightgreen'},
 ]
 
+export function generateStateKey(): string {
+  function randomInteger(max: number) {
+      return Math.floor(Math.random() * max) + 1;
+  }
+  return R.range(0, 6).map((_) => randomInteger(9)).join('')
+}
+
 export function zero(): AppState {
-    const transactions:Transaction[] = []//createFakeTransactions()
-    return {
-        transactionRange: zeroTransactionRange(),
-        transactions,
-        tags
-    }
+  const transactions: Transaction[] = []//createFakeTransactions()
+  return {
+    transactionRange: zeroTransactionRange(),
+    transactions,
+    tags,
+    stateKey: generateStateKey()
+  }
 }
