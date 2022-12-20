@@ -14,6 +14,11 @@ Offene todos
 - [ ] halbjährliche Ausgaben
 - [ ] monatliches offenes Budget / frei zur Verfügung ausrechnen
 - [ ] computed properties in singleton services auslagern
+- [ ] handle key not found in backend
+- [ ] handle transaction deleted while merging
+- [ ] sync automatically when PWA online
+- [ ] display last sync time
+- [ ] display online/offline mode
 
 ## Aktien/Finances
 - [ ] Dashboard für Aktiendepot mit aktuellem Kurs
