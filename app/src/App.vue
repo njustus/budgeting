@@ -2,6 +2,7 @@
 import {RouterLink, RouterView} from 'vue-router'
 import {h} from 'vue'
 import type {MenuOption} from "naive-ui";
+import SyncButton from './components/sync-button.vue'
 
 const menuOptions: MenuOption[] = [
   {
@@ -13,14 +14,19 @@ const menuOptions: MenuOption[] = [
   }, {
     label: () => h(RouterLink, {to: '/options', activeClass: 'success'}, () => "Options"),
     key: 'options'
+  }, {
+    label: () => h(SyncButton),
+    key: 'sync'
   }
 ]
 
 </script>
 
 <template>
-  <n-menu mode="horizontal" :options="menuOptions"/>
-  <RouterView></RouterView>
+  <n-notification-provider>
+    <n-menu mode="horizontal" :options="menuOptions"/>
+    <RouterView></RouterView>
+  </n-notification-provider>
 </template>
 
 <style scoped>
