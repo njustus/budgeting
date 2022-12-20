@@ -23,6 +23,7 @@ export interface AppState {
   transactionRange: TransactionRange
   tags: Tag[]
   stateKey: string
+  lastSynced?: Date
 }
 
 export interface Transaction {
