@@ -10,6 +10,7 @@ const isSyncing = ref(false)
 const stateKey = store.stateKey
 
 async function doSync() {
+  //TODO merge backend state with frontend
   isSyncing.value = true
   await synchronizer.sync(stateKey, store.$state)
   isSyncing.value = false

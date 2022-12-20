@@ -33,6 +33,7 @@ export interface Transaction {
   tags: Tag[]
   type: TransactionType
   recurrence: TransactionRecurrence
+  lastUpdate: Date
 }
 
 export function zeroTransactionRange(): TransactionRange {
