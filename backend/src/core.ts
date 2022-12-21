@@ -32,6 +32,15 @@ app.get(path('state/:stateId'), (req: express.Request, res: express.Response) =>
   }
 })
 
+app.get(path('status'), (req: express.Request, res: express.Response) => {
+  const payload = {
+    date: new Date(),
+    message: 'OK'
+  }
+
+  res.status(200).json(payload)
+});
+
 app.listen(CONFIG.getPort(), CONFIG.host, () => {
   console.log(`config loaded:`, CONFIG)
   console.log(`Backend running at ${CONFIG.host}:${CONFIG.getPort()}`)

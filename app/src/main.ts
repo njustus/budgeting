@@ -1,12 +1,12 @@
-import { createApp, ref} from 'vue'
-import { createPinia } from 'pinia'
+import {createApp, ref} from 'vue'
+import {createPinia} from 'pinia'
 import naive from 'naive-ui'
-
 import App from './App.vue'
 import router from './router'
 
 import './assets/main.scss'
-import { useAppStore } from './stores/app-state'
+import {useAppStore} from './stores/app-state'
+import {connectivityChecker} from "@/services";
 
 const app = createApp(App)
 const txs = ref([])
@@ -24,6 +24,11 @@ app.use(router)
 app.mount('#app')
 
 const appStore = useAppStore();
+
+connectivityChecker.periodicCheck((isOnline) => {
+  appStore.$patch({isOnline})
+})
+
 appStore.$subscribe((mut, state) => {
     console.log("state changed", state)
     localStorage.setItem('state', JSON.stringify(state))

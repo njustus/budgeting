@@ -7,6 +7,7 @@ export interface AppState {
   tags: Tag[]
   stateKey: string
   lastSynced?: Date
+  isOnline: boolean
 }
 
 
@@ -35,6 +36,7 @@ export function zero(): AppState {
     transactionRange: zeroTransactionRange(),
     transactions,
     tags,
-    stateKey: generateStateKey()
+    stateKey: generateStateKey(),
+    isOnline: true
   }
 }
