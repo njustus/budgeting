@@ -27,6 +27,8 @@ async function doSync() {
   })
 }
 
+//TODO state input not updating
+
 </script>
 
 <template>

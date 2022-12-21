@@ -3,7 +3,7 @@ services:
   budgeting:
     build: .
     ports:
-      - '8080:3000'
+      - '4200:3000'
     volumes:
       - ./private:/usr/src/private
     environment:
