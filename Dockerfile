@@ -5,7 +5,7 @@ COPY backend/package*.json ./
 RUN npm install
 
 COPY backend/ ./
-RUN npm run build
+RUN npm run build:prod
 
 COPY app/dist ./dist/public
 
