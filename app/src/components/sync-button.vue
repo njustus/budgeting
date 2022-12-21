@@ -7,10 +7,10 @@ import {useNotification} from "naive-ui";
 const notification = useNotification()
 const store = useAppStore();
 const isSyncing = ref(false)
-const stateKey = store.stateKey
 const lastSynced = computed(() => store.lastSynced ? store.lastSynced.toLocaleString() : 'Never')
 
 async function doSync() {
+  const stateKey = store.stateKey
   isSyncing.value = true
 
   const backendState = await synchronizer.getState(stateKey)
@@ -26,8 +26,6 @@ async function doSync() {
     description: 'State saved at key: '+stateKey
   })
 }
-
-//TODO state input not updating
 
 </script>
 
