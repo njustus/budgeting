@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { CONFIG } from "./configuration";
+import {CONFIG} from "./configuration";
 
 export const stateRepository = {
   BASE_PATH: CONFIG.repositoryPath,
@@ -22,9 +22,13 @@ export const stateRepository = {
     fs.writeFileSync(filePath, content, {encoding: this.ENCODING})
   },
 
-  get(id: string): any {
+  get(id: string): any | null {
     const filePath = this.filePath(id)
     console.log(`reading from file ${filePath}`)
+
+    if(!fs.existsSync(filePath)) {
+      return null
+    }
 
     const content = fs.readFileSync(filePath, {encoding: this.ENCODING}).toString()
     return JSON.parse(content)

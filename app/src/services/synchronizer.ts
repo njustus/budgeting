@@ -10,7 +10,16 @@ export const synchronizer = {
     },
 
     async getState(stateId: string): Promise<AppState> {
-        const data = await (await axios.get('/api/state/'+stateId)).data
+        const data = await axios.get('/api/state/'+stateId)
+          .then((result) => result.data)
+          .catch((err) => {
+            if(404 === err?.response?.status) {
+              return { transactions: [] }
+            } else {
+              throw err
+            }
+          })
+
         return data as AppState
     },
 

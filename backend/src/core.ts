@@ -24,7 +24,12 @@ app.post(path('state/:stateId'), (req: express.Request, res: express.Response) =
 
 app.get(path('state/:stateId'), (req: express.Request, res: express.Response) => {
   const data = stateRepository.get(req.params.stateId)
-  res.status(200).json(data)
+
+  if(data) {
+    res.status(200).json(data)
+  } else {
+    res.sendStatus(404)
+  }
 })
 
 app.listen(CONFIG.getPort(), CONFIG.host, () => {
