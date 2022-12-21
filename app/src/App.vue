@@ -3,6 +3,7 @@ import {RouterLink, RouterView} from 'vue-router'
 import {h} from 'vue'
 import type {MenuOption} from "naive-ui";
 import SyncButton from './components/sync-button.vue'
+import ConnectionIndicator from './components/connection-indicator.vue'
 
 const menuOptions: MenuOption[] = [
   {
@@ -17,6 +18,9 @@ const menuOptions: MenuOption[] = [
   }, {
     label: () => h(SyncButton),
     key: 'sync'
+  }, {
+    label: () => h(ConnectionIndicator),
+    key: 'mode'
   }
 ]
 
