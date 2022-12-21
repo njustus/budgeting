@@ -6,7 +6,7 @@ import {
   TransactionRecurrence,
   TransactionType,
   zero
-} from '@/models/state'
+} from '@/models'
 import {defineStore} from 'pinia'
 import {eachMonthOfInterval, eachQuarterOfInterval, eachYearOfInterval, isWithinInterval} from 'date-fns'
 

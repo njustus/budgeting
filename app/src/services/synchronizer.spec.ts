@@ -1,7 +1,7 @@
 import {beforeEach, describe, expect, it} from 'vitest'
 import {createPinia, setActivePinia} from 'pinia'
 import {useAppStore} from '@/stores/app-state'
-import type {AppState, Transaction} from '@/models/state'
+import type {AppState, Transaction} from '@/models'
 import {synchronizer} from './synchronizer'
 
 describe('The synchronizer should', function () {
@@ -24,14 +24,16 @@ describe('The synchronizer should', function () {
         {
           id: '1',
           lastUpdate: new Date(2022,1,2),
-          title: 'local transaction'
+          title: 'local transaction',
+          date: new Date(2000,1,1)
         }
       ])
 
       const backendState = minimalState([{
         id: '1',
         lastUpdate: new Date(2022,1,1),
-        title: 'remote transaction'
+        title: 'remote transaction',
+        date: new Date(2000,1,1)
       }])
 
       const mergedState = synchronizer.mergeState(localState, backendState)
@@ -43,14 +45,16 @@ describe('The synchronizer should', function () {
         {
           id: '1',
           lastUpdate: new Date(2022,1,2),
-          title: 'local transaction'
+          title: 'local transaction',
+          date: new Date(2000,1,1)
         }
       ])
 
       const backendState = minimalState([{
         id: '1',
         lastUpdate: new Date(2022,1,3),
-        title: 'remote transaction'
+        title: 'remote transaction',
+        date: new Date(2000,1,1)
       }])
 
       const mergedState = synchronizer.mergeState(localState, backendState)
@@ -62,7 +66,8 @@ describe('The synchronizer should', function () {
         {
           id: '1',
           lastUpdate: new Date(2022,1,2),
-          title: 'local transaction'
+          title: 'local transaction',
+          date: new Date(2000,1,1)
         }
       ])
       const backendState = minimalState([])
@@ -76,7 +81,8 @@ describe('The synchronizer should', function () {
       const backendState = minimalState([{
           id: '1',
           lastUpdate: new Date(2022,1,2),
-          title: 'local transaction'
+          title: 'local transaction',
+          date: new Date(2000,1,1)
         }])
 
       const mergedState = synchronizer.mergeState(localState, backendState)

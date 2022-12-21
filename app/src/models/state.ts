@@ -1,22 +1,5 @@
 import * as R from 'ramda'
-
-export interface Tag {
-  name: string,
-  color: string
-}
-
-export enum TransactionType {
-  Expense, Income
-}
-
-export enum TransactionRecurrence {
-  monthly, quaterly, yearly, once
-}
-
-export interface TransactionRange {
-  start: Date | null,
-  end: Date
-}
+import {type Tag, type Transaction, type TransactionRange, zeroTransactionRange} from "@/models";
 
 export interface AppState {
   transactions: Transaction[]
@@ -26,23 +9,6 @@ export interface AppState {
   lastSynced?: Date
 }
 
-export interface Transaction {
-  id: string
-  title: string
-  amount: number
-  date: Date
-  tags: Tag[]
-  type: TransactionType
-  recurrence: TransactionRecurrence
-  lastUpdate: Date
-}
-
-export function zeroTransactionRange(): TransactionRange {
-  return {
-    start: null,
-    end: new Date()
-  }
-}
 
 const tags: Tag[] = [
   {name: 'Versicherung', color: 'dodgerblue'},
@@ -64,7 +30,7 @@ export function generateStateKey(): string {
 }
 
 export function zero(): AppState {
-  const transactions: Transaction[] = []//createFakeTransactions()
+  const transactions: Transaction[] = []
   return {
     transactionRange: zeroTransactionRange(),
     transactions,

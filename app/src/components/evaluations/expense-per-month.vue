@@ -14,8 +14,8 @@ import {
   Tooltip
 } from 'chart.js'
 import * as R from 'ramda'
-import type {Transaction} from "@/models/state";
-import {TransactionType} from "@/models/state";
+import type {Transaction} from "@/models";
+import {TransactionType} from "@/models";
 import {date} from "@/utils/formats";
 import {computed} from "vue";
 

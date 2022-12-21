@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {useAppStore} from '@/stores/app-state'
 import {isSameYear} from "date-fns";
-import {TransactionType} from "@/models/state";
+import {TransactionType} from "@/models";
 import {Bar} from 'vue-chartjs';
 import {ArcElement, BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip} from 'chart.js'
 

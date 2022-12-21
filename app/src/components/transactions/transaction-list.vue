@@ -1,7 +1,7 @@
 <script setup="setup" lang="ts">
 import {useAppStore} from '@/stores/app-state'
-import type {Tag, Transaction} from "@/models/state";
-import {TransactionType} from "@/models/state";
+import type {Tag, Transaction} from "@/models";
+import {TransactionType} from "@/models";
 import {currency, date, recurrence} from '@/utils/formats';
 import * as R from 'ramda';
 import {endOfMonth} from "date-fns";

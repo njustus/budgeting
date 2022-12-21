@@ -1,6 +1,6 @@
 <script setup="setup" lang="ts">
 import {useAppStore} from '@/stores/app-state'
-import {zeroTransactionRange} from "@/models/state";
+import {zeroTransactionRange} from "@/models";
 
 const zeroRange = zeroTransactionRange()
 const store = useAppStore();

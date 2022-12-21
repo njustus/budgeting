@@ -1,4 +1,4 @@
-import {TransactionRecurrence} from "@/models/state";
+import {TransactionRecurrence} from "@/models";
 
 export interface RecurrenceDisplay {
   fullName: string

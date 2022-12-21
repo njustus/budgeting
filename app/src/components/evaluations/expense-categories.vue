@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {useAppStore} from '@/stores/app-state'
 import {isSameYear} from "date-fns";
-import {TransactionType, type Tag} from "@/models/state";
+import {type Tag, TransactionType} from "@/models";
 import {Doughnut} from 'vue-chartjs';
-import {Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ArcElement} from 'chart.js'
+import {ArcElement, BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip} from 'chart.js'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ArcElement)
 

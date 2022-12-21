@@ -1,4 +1,4 @@
-import type {AppState, Transaction} from "@/models/state";
+import type {AppState, Transaction} from "@/models";
 import axios from "axios";
 import * as R from "ramda";
 

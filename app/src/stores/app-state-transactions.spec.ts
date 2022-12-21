@@ -1,9 +1,8 @@
 import {beforeEach, describe, expect, it} from 'vitest'
 import {createPinia, setActivePinia} from 'pinia'
 import {useAppStore} from './app-state'
-import type {Transaction} from '@/models/state'
-import {TransactionRecurrence, TransactionType} from '@/models/state'
-
+import type {Transaction} from '@/models'
+import {TransactionRecurrence, TransactionType} from '@/models'
 
 describe('The TransactionStore should', function () {
     let store: any = null

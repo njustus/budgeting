@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useAppStore} from '@/stores/app-state'
-import type {Tag} from "@/models/state";
+import type {Tag} from "@/models";
 import {ref} from "vue";
 
 const store = useAppStore();

@@ -1,7 +1,7 @@
 <script setup="setup" lang="ts">
 import {useAppStore} from '@/stores/app-state'
 import {ref} from 'vue'
-import {TransactionRecurrence, TransactionType} from "@/models/state";
+import {TransactionRecurrence, TransactionType} from "@/models";
 import {v4 as uuidv4} from 'uuid';
 
 const store = useAppStore();
