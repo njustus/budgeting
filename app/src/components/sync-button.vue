@@ -32,7 +32,7 @@ async function doSync() {
 <template>
   <n-space>
       <n-input-group>
-        <n-input v-model:value="stateKey"></n-input>
+        <n-input v-model:value="store.stateKey"></n-input>
         <n-button type="primary" @click="doSync" :loading="isSyncing">Sync</n-button>
       </n-input-group>
       <small>Last synchronised: {{ lastSynced }}</small>
