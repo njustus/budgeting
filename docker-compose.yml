@@ -1,0 +1,11 @@
+version: '3'
+services:
+  budgeting:
+    build: .
+    ports:
+      - '8080:3000'
+    volumes:
+      - ./private:/usr/src/private
+    environment:
+      - HOST=0.0.0.0
+      - REPOSITORY_PATH=/usr/src/private/
