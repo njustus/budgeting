@@ -4,19 +4,23 @@ import {h, ref} from 'vue'
 import type {MenuOption} from "naive-ui";
 import SyncButton from '@/components/menubar/sync-button.vue'
 import ConnectionIndicator from '@/components/menubar/connection-indicator.vue'
+import FaIcon from '@/components/fa-icon.vue'
 
 const collapsed = ref(false)
 
 const menuOptions: MenuOption[] = [
   {
     label: () => h(RouterLink, {to: '/transactions', activeClass: 'success'}, () => "Home"),
-    key: 'transactions'
+    key: 'transactions',
+    icon: () => h(FaIcon, {icon: 'home'})
   }, {
     label: () => h(RouterLink, {to: '/analysis', activeClass: 'success'}, () => "Analysis"),
-    key: 'analysis'
+    key: 'analysis',
+    icon: () => h(FaIcon, {icon: 'chart-pie'})
   }, {
     label: () => h(RouterLink, {to: '/options', activeClass: 'success'}, () => "Options"),
-    key: 'options'
+    key: 'options',
+    icon: () => h(FaIcon, {icon: 'wrench'})
   }, {
     label: () => h(SyncButton),
     key: 'sync'
