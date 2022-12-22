@@ -4,7 +4,9 @@ import {synchronizer} from '@/services/synchronizer'
 import {computed, ref} from "vue";
 import {useNotification} from "naive-ui";
 import FaIcon from '@/components/common/fa-icon.vue'
+import type {SIZINGS} from "@/services";
 
+const props = defineProps<{ sizing: SIZINGS }>();
 const notification = useNotification()
 const store = useAppStore();
 const isSyncing = ref(false)
@@ -31,13 +33,19 @@ async function doSync() {
 </script>
 
 <template>
-  <n-space>
+  <n-grid cols="1" rows="2">
+    <n-gi>
       <n-input-group>
-        <n-input v-model:value="store.stateKey"></n-input>
-        <n-button type="primary" @click="doSync" :loading="isSyncing"><FaIcon icon="sync" v-if="!isSyncing" ></FaIcon>&nbsp;Sync</n-button>
+        <n-input v-model:value="store.stateKey" :size="props.sizing"></n-input>
+        <n-button type="primary" @click="doSync" :loading="isSyncing" :size="props.sizing">
+          <FaIcon icon="sync" v-if="!isSyncing"></FaIcon>&nbsp;Sync
+        </n-button>
       </n-input-group>
+    </n-gi>
+    <n-gi>
       <small>Last synchronised: {{ lastSynced }}</small>
-  </n-space>
+    </n-gi>
+  </n-grid>
 </template>
 
 
