@@ -3,6 +3,7 @@ import {useAppStore} from '@/stores/app-state'
 import {synchronizer} from '@/services/synchronizer'
 import {computed, ref} from "vue";
 import {useNotification} from "naive-ui";
+import FaIcon from '@/components/common/fa-icon.vue'
 
 const notification = useNotification()
 const store = useAppStore();
@@ -33,7 +34,7 @@ async function doSync() {
   <n-space>
       <n-input-group>
         <n-input v-model:value="store.stateKey"></n-input>
-        <n-button type="primary" @click="doSync" :loading="isSyncing">Sync</n-button>
+        <n-button type="primary" @click="doSync" :loading="isSyncing"><FaIcon icon="sync" v-if="!isSyncing" ></FaIcon>&nbsp;Sync</n-button>
       </n-input-group>
       <small>Last synchronised: {{ lastSynced }}</small>
   </n-space>
