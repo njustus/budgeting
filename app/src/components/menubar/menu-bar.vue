@@ -4,7 +4,7 @@ import {h, ref} from 'vue'
 import type {MenuOption} from "naive-ui";
 import SyncButton from '@/components/menubar/sync-button.vue'
 import ConnectionIndicator from '@/components/menubar/connection-indicator.vue'
-import FaIcon from '@/components/fa-icon.vue'
+import FaIcon from '@/components/common/fa-icon.vue'
 
 const collapsed = ref(false)
 
