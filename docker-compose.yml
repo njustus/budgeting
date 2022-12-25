@@ -14,7 +14,7 @@ services:
       - HOST=0.0.0.0
       - PORT=9090
       - HTTPS_CRT=/etc/budgeting.crt
-      - HTTPS_key=/etc/budgeting.key
+      - HTTPS_KEY=/etc/budgeting.key
       - REPOSITORY_PATH=/usr/src/private/
 
 volumes:
