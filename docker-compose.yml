@@ -2,10 +2,14 @@ version: '3'
 services:
   budgeting:
     image: budgeting:latest
+    restart: unless-stopped
     ports:
       - '4200:3000'
     volumes:
-      - ./private:/usr/src/private
+      - budgeting_data:/usr/src/private
     environment:
       - HOST=0.0.0.0
       - REPOSITORY_PATH=/usr/src/private/
+
+volumes:
+  budgeting_data:
