@@ -4,15 +4,17 @@ services:
     image: budgeting:latest
     restart: unless-stopped
     ports:
-      - '4200:3000'
+      - 4200:3000
     volumes:
       - budgeting_data:/usr/src/private
+      - /etc/ssl/private/budgeting.crt:/etc/budgeting.crt
+      - /etc/ssl/private/budgeting.key:/etc/budgeting.key
     environment:
       - HTTPS=true
       - HOST=0.0.0.0
       - PORT=9090
-      - HTTPS_CRT=/etc/ssl/private/budgeting.crt
-      - HTTPS_key=/etc/ssl/private/budgeting.key
+      - HTTPS_CRT=/etc/budgeting.crt
+      - HTTPS_key=/etc/budgeting.key
       - REPOSITORY_PATH=/usr/src/private/
 
 volumes:
