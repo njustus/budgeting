@@ -12,7 +12,7 @@ services:
     environment:
       - HTTPS=true
       - HOST=0.0.0.0
-      - PORT=9090
+      - PORT=3000
       - HTTPS_CRT=/etc/budgeting.crt
       - HTTPS_KEY=/etc/budgeting.key
       - REPOSITORY_PATH=/usr/src/private/
