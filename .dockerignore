@@ -14,5 +14,6 @@ backend/dist
 backend/node_modules
 backend/private
 
+app/dist
 app/dev-dist
 app/node_modules
