@@ -8,7 +8,11 @@ services:
     volumes:
       - budgeting_data:/usr/src/private
     environment:
+      - HTTPS=true
       - HOST=0.0.0.0
+      - PORT=9090
+      - HTTPS_CRT=/etc/ssl/private/budgeting.crt
+      - HTTPS_key=/etc/ssl/private/budgeting.key
       - REPOSITORY_PATH=/usr/src/private/
 
 volumes:
