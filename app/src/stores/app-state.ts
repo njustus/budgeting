@@ -81,8 +81,10 @@ export const useAppStore = defineStore('app-state', {
     },
 
     totalBalance(state: AppState): number {
-      return state.transactions
-        .map(x => x.amount)
+      const totalAmount = (t:Transaction) => t.type === TransactionType.Income ? t.amount : -t.amount
+
+      return this.totalTransactions
+        .map(totalAmount)
         .reduce((x, y) => x + y, 0)
     },
 

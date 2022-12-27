@@ -19,7 +19,7 @@ Offene todos
 - [ ] sync automatically when PWA online
 - [x] display last sync time
 - [x] display online/offline mode
-- [ ] collapse menu on small screens
+- [x] collapse menu on small screens
 - [ ] notify when "back online"
 
 ## Aktien/Finances
