@@ -3,10 +3,10 @@ export interface StockInfo {
   name: string
   wkn: string
   ter?: number
+  exchange: StockExchange
 }
 
 export interface StockExchange {
-  isin: string
   price: number
   timestamp: Date
 }

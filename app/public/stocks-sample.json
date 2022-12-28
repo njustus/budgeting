@@ -1,0 +1,57 @@
+[
+  {
+    "BasicV1": {
+      "DATE_TOTAL_EXPENSE_RATIO": "2021-10-28T22:00:00+0000",
+      "ID": {
+        "CONSORS_ID": "_15214293",
+        "ID_NOTATION": "15214293",
+        "ID_OSI": "14352926",
+        "ISIN": "FR0010315770",
+        "SYMBOL": "LYYA",
+        "WKN": "LYX0AG"
+      },
+      "ID_SECURITY_TYPE": "7",
+      "ID_SUB_SECURITY_TYPE": "71",
+      "ID_TYPE_REPLICATION": "6",
+      "ISO_COUNTRY": "FR",
+      "IS_EXCHANGE_TRADED": true,
+      "IS_ISSUED_BY_BNPPARIBAS": false,
+      "IS_SAVINGSPLAN_ALLOWED": true,
+      "IS_SOLD_BY_CONSORS": true,
+      "NAME_INVESTMENT_FOCUS": "Aktien weltweit Standardwerte Blend",
+      "NAME_ISSUER": "Amundi Asset Management S.A.",
+      "NAME_SECURITY": "LYXOR MSCI WORLD UCITS ETF - EUR DIS",
+      "NAME_SECURITY_SHORT": "LYXOR MSCI WORLD UCITS ETF - EUR DIS",
+      "NAME_SECURITY_TYPE": "ETF",
+      "NAME_SUB_SECURITY_TYPE": "Aktienfonds",
+      "NAME_TYPE_REPLICATION": "Synthetic Replication",
+      "REGISTERED_FOR_DE": true,
+      "TOOL_SECURITY_TYPE": "ETF",
+      "TOTAL_EXPENSE_RATIO": 0.3
+    },
+    "Info": {
+      "ID": "LYX0AG"
+    },
+    "PriceV2": {
+      "ADDENDUM": null,
+      "CONSORS_EXCHANGE_CODE": "@_KAG",
+      "CONSORS_EXCHANGE_NAME": "Fondsgesellschaft",
+      "DATETIME_PRICE": "2022-12-27T09:00:00+0000",
+      "FIRST": 240.1,
+      "HIGH": 241.0999,
+      "ID_NOTATION": "20485642",
+      "ID_UNIT_PRICE": "pieces",
+      "ISO_CURRENCY": "EUR",
+      "IS_REALTIME": true,
+      "LOW": 240.1,
+      "NUMBER_PRICES": 4,
+      "PERFORMANCE": -0.5101,
+      "PERFORMANCE_PCT": -0.211125,
+      "PREVIOUS_LAST": 241.61,
+      "PRICE": 241.0999,
+      "TOTAL_MONEY": null,
+      "TOTAL_VOLUME": null,
+      "VOLUME": null
+    }
+  }
+]
