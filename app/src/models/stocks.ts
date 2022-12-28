@@ -10,3 +10,8 @@ export interface StockExchange {
   price: number
   timestamp: Date
 }
+
+export interface SubscribedStock {
+  isin: string
+  count: number
+}

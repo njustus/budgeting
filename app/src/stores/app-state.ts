@@ -5,7 +5,7 @@ import {
   type Transaction,
   TransactionRecurrence,
   TransactionType,
-  zero
+  zero, zeroDepot
 } from '@/models'
 import {defineStore} from 'pinia'
 import {eachMonthOfInterval, eachQuarterOfInterval, eachYearOfInterval, isWithinInterval} from 'date-fns'
@@ -21,6 +21,7 @@ export const useAppStore = defineStore('app-state', {
     appState.transactions = appState.transactions.map((x: Transaction) => ({...x, date: new Date(x.date)}))
     appState.stateKey =  appState.stateKey || generateStateKey()
     appState.lastSynced = appState.lastSynced ? new Date(appState.lastSynced) : null
+    appState.depot = appState.depot || zeroDepot
 
     return appState
   },

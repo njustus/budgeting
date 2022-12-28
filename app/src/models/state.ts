@@ -1,5 +1,6 @@
 import * as R from 'ramda'
 import {type Tag, type Transaction, type TransactionRange, zeroTransactionRange} from "@/models";
+import type {SubscribedStock} from "@/models";
 
 export interface AppState {
   transactions: Transaction[]
@@ -8,6 +9,10 @@ export interface AppState {
   stateKey: string
   lastSynced?: Date
   isOnline: boolean
+
+  depot: {
+    subscribedStocks: SubscribedStock[]
+  }
 }
 
 
@@ -23,6 +28,10 @@ const tags: Tag[] = [
   {name: 'Bonus', color: 'lightgreen'},
 ]
 
+export const zeroDepot = {
+  subscribedStocks: [] as SubscribedStock[]
+}
+
 export function generateStateKey(): string {
   function randomInteger(max: number) {
       return Math.floor(Math.random() * max) + 1;
@@ -37,6 +46,7 @@ export function zero(): AppState {
     transactions,
     tags,
     stateKey: generateStateKey(),
-    isOnline: true
+    isOnline: true,
+    depot: zeroDepot
   }
 }
