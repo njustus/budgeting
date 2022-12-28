@@ -15,6 +15,10 @@ const menuOptions: MenuOption[] = [
     label: () => h(RouterLink, {to: '/transactions', activeClass: 'success'}, () => "Home"),
     key: 'transactions',
     icon: () => h(FaIcon, {icon: 'home'})
+  },{
+    label: () => h(RouterLink, {to: '/stocks', activeClass: 'success'}, () => "Stocks"),
+    key: 'stocks',
+    icon: () => h(FaIcon, {icon: 'landmark'})
   }, {
     label: () => h(RouterLink, {to: '/analysis', activeClass: 'success'}, () => "Analysis"),
     key: 'analysis',

@@ -14,4 +14,5 @@ export interface StockExchange {
 export interface SubscribedStock {
   isin: string
   count: number
+  stockInfo: StockInfo
 }
