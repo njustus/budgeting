@@ -12,6 +12,10 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:3000',
         changeOrigin: true,
+      },
+      '/web-financialinfo-service': {
+        target: 'https://www.consorsbank.de',
+        changeOrigin: true,
       }
     }
   },
@@ -42,8 +46,8 @@ export default defineConfig({
             type: 'image/png'
           }
         ]
-      }      
-    })    
+      }
+    })
   ],
   resolve: {
     alias: {
