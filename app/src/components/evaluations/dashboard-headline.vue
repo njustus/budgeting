@@ -2,11 +2,12 @@
 import {useAppStore} from '@/stores/app-state'
 import {currency} from '@/utils/formats'
 import FaIcon from '@/components/common/fa-icon.vue'
+import {computed} from "vue";
 
 const store = useAppStore()
 const notgroschen = 500.58
-const depot = 50658.58
-const everything = store.totalBalance + notgroschen + depot
+const depot = computed(() => store.depotBalance)
+const everything = computed(() => store.totalBalance + notgroschen + depot.value)
 
 </script>
 

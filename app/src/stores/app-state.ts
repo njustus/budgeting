@@ -10,6 +10,7 @@ import {
 } from '@/models'
 import {defineStore} from 'pinia'
 import {eachMonthOfInterval, eachQuarterOfInterval, eachYearOfInterval, isWithinInterval} from 'date-fns'
+import * as R from "ramda";
 
 export const useAppStore = defineStore('app-state', {
   state: (): AppState => {
@@ -113,6 +114,10 @@ export const useAppStore = defineStore('app-state', {
       })
 
       return sums
+    },
+
+    depotBalance(state: AppState): number {
+      return R.sum(state.depot.subscribedStocks.map(stock => stock.count*stock.stockInfo.exchange.price))
     }
   }
 })
