@@ -1,6 +1,7 @@
 import {
   type AppState,
   generateStateKey,
+  type StockInfo,
   type Tag,
   type Transaction,
   TransactionRecurrence,
@@ -41,6 +42,14 @@ export const useAppStore = defineStore('app-state', {
 
     deleteTransaction(t: Transaction) {
       this.transactions = this.transactions.filter(tx => tx.id !== t.id);
+    },
+
+    addStock(stockDetails:StockInfo, count:number) {
+      this.depot.subscribedStocks.push({
+        count,
+        isin: stockDetails.isin,
+        stockInfo: stockDetails
+      })
     }
   },
   getters: { //TODO should all be memoized

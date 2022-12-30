@@ -3,6 +3,7 @@ import {useAppStore} from '@/stores/app-state'
 import {currency} from '@/utils/formats'
 import type {SubscribedStock} from "@/models";
 import {stocksConfig} from '@/config'
+import StockForm from "@/components/stocks/stock-form.vue";
 
 const store = useAppStore();
 const subscribedStocks = store.depot.subscribedStocks
@@ -15,11 +16,8 @@ function total(stock: SubscribedStock): number {
 
 <template>
   <n-list>
+    <stock-form></stock-form>
     <n-list-item v-for="stock of subscribedStocks" v-bind:key="stock.isin">
-      <template #suffix>
-        <n-text :type="'info'"><strong>{{ currency.format(total(stock)) }}</strong></n-text>
-      </template>
-
       <n-grid :cols="6" #default>
         <n-gi>
           <small>{{ stock.count }} x {{ currency.format(stock.stockInfo.exchange.price) }}</small>
@@ -29,6 +27,10 @@ function total(stock: SubscribedStock): number {
           <small>{{ stock.isin }}</small>
         </n-gi>
       </n-grid>
+
+      <template #suffix>
+        <n-text :type="'info'"><strong>{{ currency.format(total(stock)) }}</strong></n-text>
+      </template>
     </n-list-item>
   </n-list>
 </template>
