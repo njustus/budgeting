@@ -25,9 +25,12 @@ export class StocksClient {
   constructor(private readonly axios: Axios) {
   }
 
-  async getStockInfo(isin:string): Promise<StockInfo> {
+  async findStockInfo(isin: string): Promise<StockInfo[]> {
     const result = await this.axios.get(stocksConfig.formatExchangePath(isin))
-    const rawData = result.data[0]
-    return parseStockInfo(rawData)
+    return result.data.filter((x: any) => x.BasicV1).map(parseStockInfo)
+  }
+
+  async getStockInfo(isin: string): Promise<StockInfo> {
+    return (await this.findStockInfo(isin))[0]
   }
 }
