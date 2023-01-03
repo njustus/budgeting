@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import {useAppStore} from '@/stores/app-state'
-import {currency} from '@/utils/formats'
 import FaIcon from '@/components/common/fa-icon.vue'
+import {currency} from '@/utils/formats'
 import {computed} from "vue";
+import DepositCounter from "@/components/evaluations/deposit-counter.vue";
 
 const store = useAppStore()
 const notgroschen = 500.58
@@ -21,12 +22,8 @@ const everything = computed(() => store.totalBalance + notgroschen + depot.value
         <n-text :type="'info'">{{ currency.format(store.totalBalance) }}</n-text>
       </n-statistic>
 
-      <n-statistic label="Notgroschen">
-        <template #prefix>
-          <FaIcon icon="piggy-bank"></FaIcon>
-        </template>
-        {{ currency.format(notgroschen) }}
-      </n-statistic>
+
+      <deposit-counter></deposit-counter>
 
       <n-statistic label="Geldanlage">
         <template #prefix>

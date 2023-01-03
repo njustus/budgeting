@@ -1,4 +1,5 @@
 import {
+  type Account,
   type AppState,
   generateStateKey,
   type StockInfo,
@@ -7,6 +8,7 @@ import {
   TransactionRecurrence,
   TransactionType,
   zero,
+  zeroAccount,
   zeroDepot
 } from '@/models'
 import {defineStore} from 'pinia'
@@ -26,6 +28,7 @@ export const useAppStore = defineStore('app-state', {
     appState.stateKey =  appState.stateKey || generateStateKey()
     appState.lastSynced = appState.lastSynced ? new Date(appState.lastSynced) : null
     appState.depot = appState.depot || zeroDepot
+    appState.deposits = appState.deposits || []
 
     return appState
   },
@@ -57,6 +60,13 @@ export const useAppStore = defineStore('app-state', {
     },
     deleteStockById(id: string) {
       this.depot.subscribedStocks = this.depot.subscribedStocks.filter(st => st.id !== id)
+    },
+
+    updateDeposit(balance:number) {
+      this.deposits.push({
+        balance,
+        timestamp: new Date()
+      })
     }
   },
   getters: { //TODO should all be memoized
@@ -124,6 +134,11 @@ export const useAppStore = defineStore('app-state', {
 
     depotBalance(state: AppState): number {
       return R.sum(state.depot.subscribedStocks.map(stock => stock.count*stock.stockInfo.exchange.price))
+    },
+
+    deposit(state: AppState): Account {
+      return (state.deposits.length > 0) ?
+        state.deposits[state.deposits.length - 1] : zeroAccount
     }
   }
 })
