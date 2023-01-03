@@ -6,7 +6,8 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "lib": ["ES2021"]
+    "lib": ["ES2021"],
+    "importsNotUsedAsValues": "remove"
   },
   "references": [
     {

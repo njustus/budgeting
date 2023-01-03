@@ -12,7 +12,7 @@ const props = defineProps<Props>()
 
 const editableStock$ = ref<SubscribedStock | null>(null)
 
-function toggleEditableStock(stock: SubscribedStock) {
+function toggleEditableStock(stock: SubscribedStock | null) {
   editableStock$.value = stock
 }
 
