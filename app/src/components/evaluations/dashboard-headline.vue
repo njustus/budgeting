@@ -6,9 +6,8 @@ import {computed} from "vue";
 import DepositCounter from "@/components/evaluations/deposit-counter.vue";
 
 const store = useAppStore()
-const notgroschen = 500.58
 const depot = computed(() => store.depotBalance)
-const everything = computed(() => store.totalBalance + notgroschen + depot.value)
+const everything = computed(() => store.totalBalance + store.deposit.balance + depot.value)
 
 </script>
 
