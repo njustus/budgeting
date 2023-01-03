@@ -15,7 +15,7 @@ function persistDeposit() {
 </script>
 
 <template>
-  <n-statistic label="Deposit" v-if="!edit$">
+  <n-statistic label="Deposit" v-if="edit$ === null">
       <template #prefix>
         <FaIcon icon="piggy-bank"></FaIcon>
       </template>
@@ -23,7 +23,7 @@ function persistDeposit() {
     <n-button :type="'tertiary'" @click="() => edit$ = store.deposit.balance"><FaIcon icon="pen"></FaIcon></n-button>
   </n-statistic>
 
-  <n-statistic label="Deposit" v-if="edit$">
+  <n-statistic label="Deposit" v-if="edit$ !== null">
     <n-input-number v-model:value="edit$" @focusout="persistDeposit" />
   </n-statistic>
 </template>
