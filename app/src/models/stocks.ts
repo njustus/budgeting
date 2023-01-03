@@ -12,6 +12,7 @@ export interface StockExchange {
 }
 
 export interface SubscribedStock {
+  id: string
   isin: string
   count: number
   stockInfo: StockInfo

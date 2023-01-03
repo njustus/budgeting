@@ -6,11 +6,13 @@ import {
   type Transaction,
   TransactionRecurrence,
   TransactionType,
-  zero, zeroDepot
+  zero,
+  zeroDepot
 } from '@/models'
 import {defineStore} from 'pinia'
 import {eachMonthOfInterval, eachQuarterOfInterval, eachYearOfInterval, isWithinInterval} from 'date-fns'
 import * as R from "ramda";
+import {v4} from "uuid"
 
 export const useAppStore = defineStore('app-state', {
   state: (): AppState => {
@@ -47,10 +49,14 @@ export const useAppStore = defineStore('app-state', {
 
     addStock(stockDetails:StockInfo, count:number) {
       this.depot.subscribedStocks.push({
+        id: v4(),
         count,
         isin: stockDetails.isin,
         stockInfo: stockDetails
       })
+    },
+    deleteStockById(id: string) {
+      this.depot.subscribedStocks = this.depot.subscribedStocks.filter(st => st.id !== id)
     }
   },
   getters: { //TODO should all be memoized
