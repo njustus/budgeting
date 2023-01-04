@@ -3,6 +3,7 @@ import * as http from 'http';
 import * as https from 'https';
 import {CONFIG} from "./configuration";
 import {stateRepository} from "./state-repository";
+import {createProxyMiddleware} from "http-proxy-middleware";
 
 stateRepository.initDirectory()
 
@@ -18,13 +19,16 @@ function server() {
     http.createServer(app)
 }
 
-app.use(express.json())
-
-app.use(express.static(__dirname+'/public'));
+//middlewares
+app.use(express.json());
+app.use(express.static(__dirname + '/public'));
+app.use(createProxyMiddleware('/web-financialinfo-service', {
+  target: 'https://www.consorsbank.de',
+  changeOrigin: true,
+}));
 
 //TODO state ctrl auslagern
 //TODO dedicated logging lib
-//TODO handle missing keys
 app.post(path('state/:stateId'), (req: express.Request, res: express.Response) => {
   stateRepository.save(req.params.stateId, req.body);
   res.sendStatus(200)
