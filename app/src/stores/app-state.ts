@@ -3,6 +3,7 @@ import {
   type AppState,
   generateStateKey,
   type StockInfo,
+  type SubscribedStock,
   type Tag,
   type Transaction,
   TransactionRecurrence,
@@ -60,6 +61,17 @@ export const useAppStore = defineStore('app-state', {
     },
     deleteStockById(id: string) {
       this.depot.subscribedStocks = this.depot.subscribedStocks.filter(st => st.id !== id)
+    },
+
+    updateStockExchanges(stockInfo: StockInfo[]) {
+      const stockByIsin = (isin: string) => this.depot.subscribedStocks.find(x => x.isin === isin)
+
+      stockInfo.forEach(stockInfo => {
+        const subscribedStock = stockByIsin(stockInfo.isin)
+        if(subscribedStock) {
+          subscribedStock.stockInfo = stockInfo
+        }
+      })
     },
 
     updateDeposit(balance:number) {
@@ -134,6 +146,18 @@ export const useAppStore = defineStore('app-state', {
 
     depotBalance(state: AppState): number {
       return R.sum(state.depot.subscribedStocks.map(stock => stock.count*stock.stockInfo.exchange.price))
+    },
+
+    depotLastUpdate(state: AppState): Date {
+      if (state.depot.subscribedStocks.length <= 0) {
+        return new Date()
+      }
+
+      const sortByTimestamp = (a: SubscribedStock, b: SubscribedStock) =>
+        new Date(a.stockInfo.exchange.timestamp).getTime() - new Date(b.stockInfo.exchange.timestamp).getTime()
+
+      const sortedStocks = state.depot.subscribedStocks.sort(sortByTimestamp).reverse()
+      return sortedStocks[0].stockInfo.exchange.timestamp
     },
 
     deposit(state: AppState): Account {
