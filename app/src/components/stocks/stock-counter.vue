@@ -27,7 +27,9 @@ function toggleEditableStock(stock: SubscribedStock | null) {
   </template>
 
   <template v-if="stock.id === editableStock$?.id">
+    <n-form-item>
     <n-input-number v-model:value="stock.count" @focusout="toggleEditableStock(null)"></n-input-number>
+    </n-form-item>
   </template>
 </template>
 
