@@ -28,14 +28,17 @@ function total(stock: SubscribedStock): number {
           <stock-counter :stock="stock"></stock-counter>
         </n-gi>
 
-        <n-gi :span="5">
+        <n-gi :span="4">
           <a :href="stocksConfig.formatStocksUrl(stock.isin)" target="_blank">{{ stock.stockInfo.name }} ({{ stock.stockInfo.wkn }})</a><br/>
           <small>{{ stock.isin }}</small>
+        </n-gi>
+        <n-gi>
+          <h3><n-text :type="'info'">{{ currency.format(total(stock)) }}</n-text></h3>
         </n-gi>
       </n-grid>
 
       <template #suffix>
-        <n-text :type="'info'"><strong>{{ currency.format(total(stock)) }}</strong></n-text>
+
         <n-button :type="'error'" @click="deleteStockById(stock.id)"><fa-icon icon="trash"></fa-icon></n-button>
       </template>
     </n-list-item>
