@@ -4,6 +4,9 @@ import {ref} from 'vue'
 import {type Transaction, TransactionRecurrence, TransactionType} from "@/models";
 import {v4 as uuidv4} from 'uuid';
 
+const emit = defineEmits<{
+  (e: 'transactionSaved', t: Transaction): void
+}>();
 const store = useAppStore();
 
 const transactionModel = ref({
@@ -41,6 +44,7 @@ function saveTransaction() {
   }
   console.log("saving: ", transaction)
   store.addTransaction(transaction)
+  emit('transactionSaved', transaction)
 }
 
 </script>
@@ -53,33 +57,26 @@ function saveTransaction() {
      <n-form-item label="Title" path="title">
        <n-input v-model:value="transactionModel.title"/>
      </n-form-item>
-
-     <n-form-item-row>
-       <n-form-item label="Amount" path="amount">
-         <n-input-number v-model:value="transactionModel.amount"/>
-       </n-form-item>
-       <n-form-item label="Startdate" path="startDate">
-         <n-date-picker v-model:value="transactionModel.startDate" type="date"/>
-       </n-form-item>
-       <n-form-item label="Enddate" path="endDate">
-         <n-date-picker v-model:value="transactionModel.endDate" type="date"/>
-       </n-form-item>
-     </n-form-item-row>
-
-     <n-form-item-row>
-       <n-form-item label="Typ" path="type">
-         <n-select v-model:value="transactionModel.type" :options="typeOptions"/>
-       </n-form-item>
-       <n-form-item label="Recurrence" path="recurrence">
-         <n-select v-model:value="transactionModel.recurrence" :options="recurrencesOptions"/>
-       </n-form-item>
-     </n-form-item-row>
-
+     <n-form-item label="Amount" path="amount">
+       <n-input-number v-model:value="transactionModel.amount"/>
+     </n-form-item>
+     <n-form-item label="Startdate" path="startDate">
+       <n-date-picker v-model:value="transactionModel.startDate" type="date"/>
+     </n-form-item>
+     <n-form-item label="Enddate" path="endDate">
+       <n-date-picker v-model:value="transactionModel.endDate" type="date"/>
+     </n-form-item>
+     <n-form-item label="Typ" path="type">
+       <n-select v-model:value="transactionModel.type" :options="typeOptions"/>
+     </n-form-item>
+     <n-form-item label="Recurrence" path="recurrence">
+       <n-select v-model:value="transactionModel.recurrence" :options="recurrencesOptions"/>
+     </n-form-item>
      <n-form-item label="Tags" path="tags">
-       <n-select v-model:value="transactionModel.tags" :options="tagsOptions" filterable multiple />
+       <n-select v-model:value="transactionModel.tags" :options="tagsOptions" filterable multiple/>
      </n-form-item>
 
-     <n-button type="success" attr-type="button" @click="saveTransaction">Save</n-button>
+     <n-button type="success" attr-type="button" @click="saveTransaction" style="float:right">Save</n-button>
    </n-form>
  </n-space>
 </template>

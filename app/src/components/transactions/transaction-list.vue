@@ -6,6 +6,7 @@ import {currency, date, recurrence} from '@/utils/formats';
 import * as R from 'ramda';
 import {endOfMonth} from "date-fns";
 import {computed} from "vue";
+import FaIcon from "@/components/common/fa-icon.vue";
 
 const store = useAppStore();
 const tagNameToColor = new Map<string, string>(store.availableTags.map(t => [t.name, t.color]))
@@ -85,7 +86,7 @@ function getTagColor(tag: Tag) {
         </template>
         <template #suffix>
             <n-text :type="getType(transaction)">{{currency.format(transaction.amount)}}</n-text>
-            <n-button type="error" @click="store.deleteTransaction(transaction)">Delete</n-button>
+            <n-button type="error" @click="store.deleteTransaction(transaction)"><fa-icon icon="trash"></fa-icon></n-button>
         </template>
       </n-list-item>
       </template>
