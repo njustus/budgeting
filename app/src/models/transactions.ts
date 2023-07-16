@@ -20,7 +20,8 @@ export interface Transaction {
   id: string
   title: string
   amount: number
-  date: Date
+  startDate: Date
+  endDate?: Date
   tags: Tag[]
   type: TransactionType
   recurrence: TransactionRecurrence

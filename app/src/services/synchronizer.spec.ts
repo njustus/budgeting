@@ -25,7 +25,7 @@ describe('The synchronizer should', function () {
           id: '1',
           lastUpdate: new Date(2022,1,2),
           title: 'local transaction',
-          date: new Date(2000,1,1)
+          startDate: new Date(2000,1,1)
         }
       ])
 
@@ -33,7 +33,7 @@ describe('The synchronizer should', function () {
         id: '1',
         lastUpdate: new Date(2022,1,1),
         title: 'remote transaction',
-        date: new Date(2000,1,1)
+        startDate: new Date(2000,1,1)
       }])
 
       const mergedState = synchronizer.mergeState(localState, backendState)
@@ -46,7 +46,7 @@ describe('The synchronizer should', function () {
           id: '1',
           lastUpdate: new Date(2022,1,2),
           title: 'local transaction',
-          date: new Date(2000,1,1)
+          startDate: new Date(2000,1,1)
         }
       ])
 
@@ -54,7 +54,7 @@ describe('The synchronizer should', function () {
         id: '1',
         lastUpdate: new Date(2022,1,3),
         title: 'remote transaction',
-        date: new Date(2000,1,1)
+        startDate: new Date(2000,1,1)
       }])
 
       const mergedState = synchronizer.mergeState(localState, backendState)
@@ -67,7 +67,7 @@ describe('The synchronizer should', function () {
           id: '1',
           lastUpdate: new Date(2022,1,2),
           title: 'local transaction',
-          date: new Date(2000,1,1)
+          startDate: new Date(2000,1,1)
         }
       ])
       const backendState = minimalState([])
@@ -82,7 +82,7 @@ describe('The synchronizer should', function () {
           id: '1',
           lastUpdate: new Date(2022,1,2),
           title: 'local transaction',
-          date: new Date(2000,1,1)
+          startDate: new Date(2000,1,1)
         }])
 
       const mergedState = synchronizer.mergeState(localState, backendState)

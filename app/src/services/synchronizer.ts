@@ -43,7 +43,7 @@ export const synchronizer = {
 
           return {
             ...result,
-            date: new Date(result.date),
+            startDate: new Date(result.startDate),
             lastUpdate: new Date(result.lastUpdate)
           }
         }

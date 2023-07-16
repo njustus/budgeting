@@ -25,7 +25,7 @@ export const useAppStore = defineStore('app-state', {
       start: appState.transactionRange.start ? new Date(appState.transactionRange.start) : null,
       end: new Date(appState.transactionRange.end),
     }
-    appState.transactions = appState.transactions.map((x: Transaction) => ({...x, date: new Date(x.date)}))
+    appState.transactions = appState.transactions.map((x: Transaction) => ({...x, startDate: new Date(x.startDate)}))
     appState.stateKey =  appState.stateKey || generateStateKey()
     appState.lastSynced = appState.lastSynced ? new Date(appState.lastSynced) : null
     appState.depot = appState.depot || zeroDepot
@@ -87,11 +87,11 @@ export const useAppStore = defineStore('app-state', {
         function repeatTransaction(timeframe: Date[]) {
           return timeframe.map(month => ({
             ...transaction,
-            date: new Date(month.getFullYear(), month.getMonth(), transaction.date.getDate())
+            startDate: new Date(month.getFullYear(), month.getMonth(), transaction.startDate.getDate())
           }))
         }
 
-        const interval = {start: transaction.date, end: today}
+        const interval = {start: transaction.startDate, end: today}
 
         switch (transaction.recurrence) {
           case TransactionRecurrence.yearly:
@@ -109,13 +109,13 @@ export const useAppStore = defineStore('app-state', {
     },
 
     sortedTransactions(state: AppState): Transaction[] {
-      const rangeFilter = (t: Transaction) => isWithinInterval(t.date, {
+      const rangeFilter = (t: Transaction) => isWithinInterval(t.startDate, {
         start: state.transactionRange.start ? state.transactionRange.start : 0,
         end: state.transactionRange.end
       })
 
       return this.totalTransactions
-        .sort((x, y) => x.date.getTime() - y.date.getTime())
+        .sort((x, y) => x.startDate.getTime() - y.startDate.getTime())
         .filter(rangeFilter)
     },
 

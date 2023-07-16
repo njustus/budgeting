@@ -48,7 +48,7 @@ class MonthData {
 
 function expensesPerMonth() {
   const grouper = (transaction: Transaction): string => {
-    return startOfMonth(transaction.date).toDateString()
+    return startOfMonth(transaction.startDate).toDateString()
   }
 
   const buildGroups = R.groupBy(grouper)

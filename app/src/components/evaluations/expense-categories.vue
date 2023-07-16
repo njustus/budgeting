@@ -18,7 +18,7 @@ function dataset(timeframe: Date) {
   const tagToColor = new Map<string, string>(store.availableTags.map(tag => [tag.name, tag.color]))
   tagToColor.set(unknown.name, unknown.color)
 
-  const transactionsWithinYear = store.totalTransactions.filter(t => isSameYear(timeframe, t.date))
+  const transactionsWithinYear = store.totalTransactions.filter(t => isSameYear(timeframe, t.startDate))
   const perTag = transactionsWithinYear
       .filter(t => t.type === TransactionType.Expense)
       .reduce((acc, t) => {

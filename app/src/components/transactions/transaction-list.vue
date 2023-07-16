@@ -16,12 +16,12 @@ function getSumForMonth(month: Date): number {
 
   return R.sum(
     R.map((tx: Transaction) => tx.type === TransactionType.Expense ? tx.amount*(-1) : tx.amount,
-      R.takeWhile((tx: Transaction) => tx.date <= month, store.sortedTransactions)))
+      R.takeWhile((tx: Transaction) => tx.startDate <= month, store.sortedTransactions)))
 }
 
 function monthDescription(idx:number): string | null {
     const t2 = transactions.value[idx]
-    const getDateString = () => date.formatMonth(new Date(t2.date.getFullYear(), t2.date.getMonth()+1, 1))
+    const getDateString = () => date.formatMonth(new Date(t2.startDate.getFullYear(), t2.startDate.getMonth()+1, 1))
 
     if(idx===0) {
         return getDateString()
@@ -29,7 +29,7 @@ function monthDescription(idx:number): string | null {
 
     const t1 = transactions.value[idx-1]
 
-    const isMonthDifferent = t1.date.getFullYear() != t2.date.getFullYear() || t1.date.getMonth() != t2.date.getMonth()
+    const isMonthDifferent = t1.startDate.getFullYear() != t2.startDate.getFullYear() || t1.startDate.getMonth() != t2.startDate.getMonth()
     return isMonthDifferent ? getDateString() : null
 }
 
@@ -65,7 +65,7 @@ function getTagColor(tag: Tag) {
           <strong>{{ monthDescription(idx) }}</strong>
         </n-thing>
         <template #suffix>
-          <strong><n-text :type="getAmountType(getSumForMonth(transaction.date))">{{currency.format(getSumForMonth(transaction.date))}}</n-text></strong>
+          <strong><n-text :type="getAmountType(getSumForMonth(transaction.startDate))">{{ currency.format(getSumForMonth(transaction.startDate)) }}</n-text></strong>
         </template>
       </n-list-item>
 
@@ -77,7 +77,7 @@ function getTagColor(tag: Tag) {
           {{transaction.title}}
         </n-thing>
 
-        <template #prefix>{{date.format(transaction.date)}}
+        <template #prefix>{{ date.format(transaction.startDate) }}
           <n-tooltip trigger="hover">
             <template #trigger><small>&nbsp;({{recurrence.format(transaction.recurrence).abbrev}})</small></template>
             {{recurrence.format(transaction.recurrence).fullName}}

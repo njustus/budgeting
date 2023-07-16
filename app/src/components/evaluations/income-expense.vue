@@ -11,7 +11,7 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale,
 const store = useAppStore();
 //TODO allow selecting year, month
 function dataset(timeframe: Date) {
-  const transactionsWithinYear = store.totalTransactions.filter(t => isSameYear(timeframe, t.date))
+  const transactionsWithinYear = store.totalTransactions.filter(t => isSameYear(timeframe, t.startDate))
 
   const expensesAmount =transactionsWithinYear.filter(t => t.type === TransactionType.Expense)
       .map(t => t.amount)

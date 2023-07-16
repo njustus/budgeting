@@ -1,7 +1,7 @@
 <script setup="setup" lang="ts">
 import {useAppStore} from '@/stores/app-state'
 import {ref} from 'vue'
-import {TransactionRecurrence, TransactionType} from "@/models";
+import {type Transaction, TransactionRecurrence, TransactionType} from "@/models";
 import {v4 as uuidv4} from 'uuid';
 
 const store = useAppStore();
@@ -10,7 +10,8 @@ const transactionModel = ref({
   title: 'a placeholder',
   recurrence: TransactionRecurrence.once,
   type: TransactionType.Expense,
-  date: new Date().getTime(),
+  startDate: new Date().getTime(),
+  endDate: null,
   amount: 0,
   tags: []
 })
@@ -30,11 +31,12 @@ const typeOptions = [
 const tagsOptions = store.availableTags.map(tag => ({label: tag.name, value: tag}))
 
 function saveTransaction() {
-  const transaction = {
+  const transaction: Transaction = {
     ...transactionModel.value,
     id: uuidv4(),
     // tags: (transactionModel.value.tags as any).value,
-    date: new Date(transactionModel.value.date),
+    startDate: new Date(transactionModel.value.startDate),
+    endDate: transactionModel.value.endDate ? new Date(transactionModel.value.endDate) : undefined,
     lastUpdate: new Date()
   }
   console.log("saving: ", transaction)
@@ -56,8 +58,11 @@ function saveTransaction() {
        <n-form-item label="Amount" path="amount">
          <n-input-number v-model:value="transactionModel.amount"/>
        </n-form-item>
-       <n-form-item label="Date" path="date">
-         <n-date-picker v-model:value="transactionModel.date" type="date"/>
+       <n-form-item label="Startdate" path="startDate">
+         <n-date-picker v-model:value="transactionModel.startDate" type="date"/>
+       </n-form-item>
+       <n-form-item label="Enddate" path="endDate">
+         <n-date-picker v-model:value="transactionModel.endDate" type="date"/>
        </n-form-item>
      </n-form-item-row>
 
