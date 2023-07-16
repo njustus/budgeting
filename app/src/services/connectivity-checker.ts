@@ -12,6 +12,6 @@ export const connectivityChecker = {
       fn(payload !== null)
     }
 
-    //window.setInterval(run, 10000)
+    window.setInterval(run, 10000)
   }
 }

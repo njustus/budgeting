@@ -14,7 +14,7 @@ export default defineConfig({
         changeOrigin: true,
       },
       '/web-financialinfo-service': {
-        target: 'https://www.consorsbank.de',
+        target: 'http://localhost:3000',
         changeOrigin: true,
       }
     }
