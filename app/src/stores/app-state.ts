@@ -25,7 +25,12 @@ export const useAppStore = defineStore('app-state', {
       start: appState.transactionRange.start ? new Date(appState.transactionRange.start) : null,
       end: new Date(appState.transactionRange.end),
     }
-    appState.transactions = appState.transactions.map((x: Transaction) => ({...x, startDate: new Date(x.startDate)}))
+    appState.transactions = appState.transactions.map((x: Transaction) => ({
+      ...x,
+      startDate: new Date(x.startDate),
+      endDate: x.endDate ? new Date(x.endDate) : null
+    }))
+
     appState.stateKey =  appState.stateKey || generateStateKey()
     appState.lastSynced = appState.lastSynced ? new Date(appState.lastSynced) : null
     appState.depot = appState.depot || zeroDepot
@@ -91,7 +96,7 @@ export const useAppStore = defineStore('app-state', {
           }))
         }
 
-        const interval = {start: transaction.startDate, end: today}
+        const interval = {start: transaction.startDate, end: transaction.endDate || today}
 
         switch (transaction.recurrence) {
           case TransactionRecurrence.yearly:
